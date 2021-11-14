@@ -35,7 +35,7 @@ The generated content is HTML so
     to another tag. But 3 and 4 bracketing tags are defined explicitly for often
     some combinations.
 -   Desirable: Text can be written in Word and with simple modification be
-    presented was copy a paste as Meltdown.
+    used with a copy a paste as Meltdown.
 
 Format | Markup | Notes
 -------|--------|-------
