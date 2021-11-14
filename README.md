@@ -11,12 +11,12 @@ are though not simple for a luddite. Alternatively, one could provide a Markdown
 parser to generate HTML tags. Meltdown is meant to be a simple to implement
 markup as a parser that outputs HTML, that makes much use of brackets.
 
-** The Acid Tests
+## The Acid Tests
 
 1.  Can the markdown syntax be implemented in, say, C\#, by a 102 level student?
 2.  Is the formatting easier than Markdown to use by a non-programmer?
 
-** Specification
+## Specification
 
 The generated content is HTML so
 -   The source content is in the main Text.
