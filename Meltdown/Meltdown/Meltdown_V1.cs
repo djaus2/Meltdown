@@ -118,7 +118,6 @@ namespace Meltdown
 
                 // If Got a Markdown URL - "Brute" force approach.
                 end = 0;
-                bool found = false;
                 while (System.IO.Enumeration.FileSystemName.MatchesSimpleExpression("*[*](*)*", line))
                 {
                     // Got a Markdown URL - "Brute" force approach
