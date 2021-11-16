@@ -76,4 +76,4 @@ Heading | (((*\<heading level 1,2or3 etc\>*\|*\<text\>*)))
 ## Conclusion
 So which of the the 2 schemas above is simpler to implement and at the same time more intuitive for a novice to use?
 
-Nb: Some C# code to follow soon.
+Nb: Some C# code to follow soon: **Update** A first version is now available.
