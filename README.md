@@ -68,9 +68,9 @@ Format | Markup | Notes
 Bold | [[*\<text\>*]]
 Italics | ((*\<text\>*))
 UnderLine | {{*\<text\>*}}
-Bold-Italics | [(*\<text\>*)] | *Order doesn't matter but begin-end must mirror*
-Bold-Italics-Underline | [({*\<text\>*})] | *Order doesn't matter but begin-end must mirror*
-Italics-Underline | ({*\<text\>*})  | *Order doesn't matter but begin-end must mirror*
+Bold-Italics | [(*\<text\>*)] | ~~*Order doesn't matter but begin-end must mirror*~~
+Bold-Italics-Underline | [({*\<text\>*})] | ~~*Order doesn't matter but begin-end must mirror*~~
+Italics-Underline | ({*\<text\>*})  | ~~*Order doesn't matter but begin-end must mirror*~~
 Font Color | [[[*\<color name\>*\|*\<text\>*]]]
 Links | {{{*\<url\>*}}}
 ,, | {{{*\<link text\>*\|*\<url\>*}}}
