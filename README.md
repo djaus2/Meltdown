@@ -3,6 +3,9 @@ A simple to code and use Markup language making much use of brackets.
 
 The key point is to bracket the text that is to be formatted.
 
+## Updates
+Now a second version of the class that formalises teh functionality making it easy to change the delimeters used. See the  V2 of the class.
+
 ## Context
 
 When implementing SendMail functionality with C\# code, for example in a Blazor
