@@ -3,6 +3,8 @@ A simple to code and use Markup language making much use of brackets.
 
 The key point is to bracket the text that is to be formatted.
 
+**This is a work in progress at the moment.**
+
 ## Updates
 1. **_Now a second version of the class that formalises the functionality making it easy to change the delimeters used. See the  V2 of the class. Also key steps (font color and links) are a separate functions. Uses the second schema below_**
 
