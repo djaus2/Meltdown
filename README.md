@@ -17,7 +17,7 @@ are though not simple for a luddite. Alternatively, one could provide a Markdown
 parser to generate HTML tags. Meltdown is meant to be a simple to implement
 markup as a parser that outputs HTML, that makes much use of brackets.
 
-**_Coming:_** Will implement some whole of line formatting with characters at start of line.  eg ```((1)) to mean H1 etc.
+**_Coming:_** Will implement some whole of line formatting with characters at start of line.  eg ```((1))``` to mean H1 etc.
 
 ## The Acid Tests
 
