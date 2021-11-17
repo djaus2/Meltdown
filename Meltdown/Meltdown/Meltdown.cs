@@ -6,7 +6,7 @@ namespace Meltdown
     /// <summary>
     /// This is a partial implementation of the the second schema, with some other extras.
     /// </summary>
-    public static class Meltdown_V2
+    public static class Meltdown
     {
         /// <summary>
         /// Default delimeters.
