@@ -82,3 +82,36 @@ Links | {{{*\<url\>*}}}
 So which of the the 2 schemas above is simpler to implement and at the same time more intuitive for a novice to use?
 
 Nb: Some C# code to follow soon: **Update** A first version is now available.
+
+## Test App Output:
+
+```
+AA[[This is Bold]]BB
+
+<p>AA<b>This is Bold</b>BB</p>
+
+AA((This is Italics))BB
+
+<p>AA<i>This is Italics</i>BB</p>
+
+AA{{This is Underline}}BB
+
+<p>AA<u>This is Underline</u>BB</p>
+
+AA(((red|This is red)))BB(((blue|This is blue)))CC
+
+<p>AA<i>(red|This is red</i>)BB<i>(blue|This is blue</i>)CC</p>
+
+AA[({This is bold italics and underline})]BB
+
+<p>AA<b><i><u>This is bold italics and underline</u></i></b>BB</p>
+
+AA{{{https://sportronics.com.au}}}BB
+
+<p>AA<a href= "https://sportronics.com.au">https://sportronics.com.au</a>BB</p>
+
+AA{{{Click here|https://sportronics.com.au}}}BB
+
+<p>AA<a href= "https://sportronics.com.au">Click here</a>BB</p>
+```
+

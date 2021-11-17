@@ -7,20 +7,47 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            string res = Meltdown_V2.Parse("[[This is Bold]]");
+            string msg = "AA[[This is Bold]]BB";
+            Console.Write(msg);
+            string res = Meltdown_V2.Parse(msg);
             Console.WriteLine(res);
-            res = Meltdown_V2.Parse("((This is Italics))");
+
+            Console.WriteLine();
+            msg = "AA((This is Italics))BB";
+            Console.Write(msg);
+            res = Meltdown_V2.Parse(msg);
             Console.WriteLine(res);
-            res = Meltdown_V2.Parse("{{This is Underline}}");
+
+            Console.WriteLine();
+            msg = "AA{{This is Underline}}BB";
+            Console.Write(msg);
+            res = Meltdown_V2.Parse(msg);
             Console.WriteLine(res);
-            res = Meltdown_V2.Parse("(((red|This is red))) (((blue|This is blue)))");
+
+            Console.WriteLine();
+            msg = "AA(((red|This is red)))BB(((blue|This is blue)))CC";
+            Console.Write(msg);
+            res = Meltdown_V2.Parse(msg);
             Console.WriteLine(res);
-            res = Meltdown_V2.Parse("[({This is bold italics and underline})]");
+
+            Console.WriteLine();
+            msg = "AA[({This is bold italics and underline})]BB";
+            Console.Write(msg);
+            res = Meltdown_V2.Parse(msg);
             Console.WriteLine(res);
-            res = Meltdown_V2.Parse("AA{{{https://sportronics.com.au}}}BB");
+
+            Console.WriteLine();
+            msg = "AA{{{https://sportronics.com.au}}}BB";
+            Console.Write(msg);
+            res = Meltdown_V2.Parse(msg);
             Console.WriteLine(res);
-            res = Meltdown_V2.Parse("AA{{{Click here|https://sportronics.com.au}}}BB");
+
+            Console.WriteLine();
+            msg = "AA{{{Click here|https://sportronics.com.au}}}BB";
+            Console.Write(msg);
+            res = Meltdown_V2.Parse(msg);
             Console.WriteLine(res);
+
             Console.ReadLine();
         }
     }
