@@ -7,6 +7,7 @@ The key point is to bracket the text that is to be formatted.
 
 ## Updates
 1. **_Now a second version of the class that formalises the functionality making it easy to change the delimeters used. See the  V2 of the class. Also key steps (font color and links) are a separate functions. Uses the second schema below_**
+2. Some bug fixes completed. Test app has some test strings.
 
 ## Context
 
@@ -15,6 +16,8 @@ app, you can send unformatted text or text formatted with HTML tags. HTML tags
 are though not simple for a luddite. Alternatively, one could provide a Markdown
 parser to generate HTML tags. Meltdown is meant to be a simple to implement
 markup as a parser that outputs HTML, that makes much use of brackets.
+
+**_Coming:_** Will implement some whole of line formatting with characters at start of line.  eg ```((1))``` to mean H1 etc.
 
 ## The Acid Tests
 
