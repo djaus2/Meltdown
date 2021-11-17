@@ -3,6 +3,11 @@ A simple to code and use Markup language making much use of brackets.
 
 The key point is to bracket the text that is to be formatted.
 
+**This is a work in progress at the moment.**
+
+## Updates
+1. **_Now a second version of the class that formalises the functionality making it easy to change the delimeters used. See the  V2 of the class. Also key steps (font color and links) are a separate functions. Uses the second schema below_**
+
 ## Context
 
 When implementing SendMail functionality with C\# code, for example in a Blazor
@@ -65,13 +70,13 @@ Format | Markup | Notes
 Bold | [[*\<text\>*]]
 Italics | ((*\<text\>*))
 UnderLine | {{*\<text\>*}}
-Bold-Italics | [(*\<text\>*)] | *Order doesn't matter but begin-end must mirror*
-Bold-Italics-Underline | [({*\<text\>*})] | *Order doesn't matter but begin-end must mirror*
-Italics-Underline | ({*\<text\>*})  | *Order doesn't matter but begin-end must mirror*
-Font Color | [[[*\<color name\>*\|*\<text\>*]]]
+Bold-Italics | [(*\<text\>*)] | ~~*Order doesn't matter but begin-end must mirror*~~
+Bold-Italics-Underline | [({*\<text\>*})] | ~~*Order doesn't matter but begin-end must mirror*~~
+Italics-Underline | ({*\<text\>*})  | ~~*Order doesn't matter but begin-end must mirror*~~
+Font Color | (((*\<color name\>*\|*\<text\>*)))
 Links | {{{*\<url\>*}}}
 ,, | {{{*\<link text\>*\|*\<url\>*}}}
-Heading | (((*\<heading level 1,2or3 etc\>*\|*\<text\>*)))
+~~Heading~~ | ~~(((*\<heading level 1,2or3 etc\>*\|*\<text\>*)))~~ | ~~Not implemented yet~~
 
 ## Conclusion
 So which of the the 2 schemas above is simpler to implement and at the same time more intuitive for a novice to use?
