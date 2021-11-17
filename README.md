@@ -103,7 +103,7 @@ AA{{This is Underline}}BB
 
 AA(((red|This is red)))BB(((blue|This is blue)))CC
 
-<p>AA<i>(red|This is red</i>)BB<i>(blue|This is blue</i>)CC</p>
+<p>AA<font color="Red">This is red</font>BB<font color="Blue">This is blue</font>CC</p>
 
 AA[({This is bold italics and underline})]BB
 
@@ -116,5 +116,6 @@ AA{{{https://sportronics.com.au}}}BB
 AA{{{Click here|https://sportronics.com.au}}}BB
 
 <p>AA<a href= "https://sportronics.com.au">Click here</a>BB</p>
+
 ```
 
