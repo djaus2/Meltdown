@@ -28,7 +28,7 @@ namespace Meltdown
 
         // Next 3 are used for searches, formed from previous 3
         // Searches use System.IO.Enumeration.FileSystemName.MatchesSimpleExpression()
-        private static string ColorPattern = $"{ccolor}*{paramSep}*{Reverse(ccolor)}";
+        private static string ColorPattern = $"*{ccolor}*{paramSep}*{Reverse(ccolor)}*";
         private static string WebPatternwithText = $"*{llink}*{paramSep}*{Reverse(llink)}*";
         private static string WebPatternwithoutText = $"*{llink}*{Reverse(llink)}*";
 
