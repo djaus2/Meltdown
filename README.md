@@ -88,8 +88,8 @@ Nb: Some C# code to follow soon: **Update** A first version is now available.
 ## Test App Output:
 
 ```
-[[1]]Heading Level 1
 
+[[1]]Heading Level 1
 <h1>Heading Level 1</h1>
 
 AA[[This is Bold]]BB

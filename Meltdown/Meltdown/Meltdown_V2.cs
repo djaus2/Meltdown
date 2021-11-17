@@ -300,7 +300,7 @@ namespace Meltdown
             return line;
         }
 
-        private static string Check4HeadinsatStartof(string line, ref bool inList,  ref bool isHeading)
+        private static string Check4HeadinsatStartof(string line, ref bool isHeading,   ref bool inList)
         {
             if (System.IO.Enumeration.FileSystemName.MatchesSimpleExpression(HeadingPatternatStartofLine, line))
             {
