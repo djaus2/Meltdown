@@ -7,6 +7,7 @@ namespace Test
     {
         static void Main(string[] args)
         {
+            // Nb: Headings don't quite work yet.
             Console.WriteLine();
             string msg = "[[1]]Heading Level 1";
             Console.Write(msg);
