@@ -78,7 +78,7 @@ Italics-Underline | ({*\<text\>*})  | ~~*Order doesn't matter but begin-end must
 Font Color | (((*\<color name\>*\|*\<text\>*)))
 Links | {{{*\<url\>*}}}
 ,, | {{{*\<link text\>*\|*\<url\>*}}}
-~~Heading~~ | ~~(((*\<heading level 1,2or3 etc\>*\|*\<text\>*)))~~ | ~~Not implemented yet~~
+Heading | [[n]]<text> | Where n=1..9  eg [[2]Heading Level 2
 
 ## Conclusion
 So which of the the 2 schemas above is simpler to implement and at the same time more intuitive for a novice to use?
