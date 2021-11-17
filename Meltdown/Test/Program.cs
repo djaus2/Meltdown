@@ -7,8 +7,21 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            Meltdown_V2.Parse("");
-            Console.WriteLine("Hello World!");
+            string res = Meltdown_V2.Parse("[[This is Bold]]");
+            Console.WriteLine(res);
+            res = Meltdown_V2.Parse("((This is Italics))");
+            Console.WriteLine(res);
+            res = Meltdown_V2.Parse("{{This is Underline}}");
+            Console.WriteLine(res);
+            res = Meltdown_V2.Parse("(((red|This is red))) (((blue|This is blue)))");
+            Console.WriteLine(res);
+            res = Meltdown_V2.Parse("[({This is bold italics and underline})]");
+            Console.WriteLine(res);
+            res = Meltdown_V2.Parse("AA{{{https://sportronics.com.au}}}BB");
+            Console.WriteLine(res);
+            res = Meltdown_V2.Parse("AA{{{Click here|https://sportronics.com.au}}}BB");
+            Console.WriteLine(res);
+            Console.ReadLine();
         }
     }
 }

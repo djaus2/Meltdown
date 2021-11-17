@@ -8,6 +8,10 @@ namespace Meltdown
     /// </summary>
     public static class Meltdown_V2
     {
+        /// <summary>
+        /// Default delimeters.
+        /// Note only supply the left hand delimeter. Right hand is generated from it.
+        /// </summary>
         private static string bold = "[[";
         private static string italics = "((";
         private static string underline = "{{";
@@ -24,11 +28,16 @@ namespace Meltdown
 
         // Next 3 are used for searches, formed from previous 3
         // Searches use System.IO.Enumeration.FileSystemName.MatchesSimpleExpression()
-        private static string ColorPattern = $"{ccolor}*{Reverse(ccolor)}";
+        private static string ColorPattern = $"{ccolor}*{paramSep}*{Reverse(ccolor)}";
         private static string WebPatternwithText = $"*{llink}*{paramSep}*{Reverse(llink)}*";
         private static string WebPatternwithoutText = $"*{llink}*{Reverse(llink)}*";
 
-        static void  SetDelimters(string formatCsv,string  webColorCsv="(((,{{{")
+        /// <summary>
+        /// Change the default delimeters by sending 1 or 2 Csv lists
+        /// </summary>
+        /// <param name="formatCsv">CSV list of bold,italic,underline strings</param>
+        /// <param name="webColorCsv">Csv list of font color and link deleimeters plus arg delimeter</param>
+        static void  SetDelimters(string formatCsv,string  webColorCsv="(((,{{{,|")
         {
             if (string.IsNullOrEmpty(formatCsv))
                 return;
@@ -87,17 +96,16 @@ namespace Meltdown
 
         public static string Parse (string txt)
         {
-            string html = "";
-
             if (string.IsNullOrEmpty(txt))
                 return "";
 
+            string html = "";
             string[] lines = txt.Split(new[] { '\r', '\n' }, StringSplitOptions.None);
 
             bool inList = false;
             foreach (var _line in lines)
             {
-                string line = _line;
+                string line = _line; // line get modified hence need copy of the ierator
                 if (string.IsNullOrEmpty(line))
                 {
                     if (inList)
@@ -108,65 +116,81 @@ namespace Meltdown
                         html += "\n";
                     continue;
                 }
-                //Bold, Italicand Underline formatting.
-                line = line.Replace(bold, "<b>");
-                line = line.Replace(Reverse(bold), "</b>");
-                line = line.Replace(italics, "<i>");
-                line = line.Replace(Reverse(italics), "</i>");
-                line = line.Replace(underline, "<u>");
-                line = line.Replace(Reverse(underline), "</u>");
 
-                line = line.Replace(bold_italics, "<b><i>");
-                line = line.Replace(Reverse(bold_italics), "</i></b>");
-                line = line.Replace(bold_underline, "<b><u>");
-                line = line.Replace(Reverse(bold_underline), "</u></b>");
-                line = line.Replace(italics_underline, "<i><u>");
-                line = line.Replace(Reverse(italics_underline), "</u></i>");
-                line = line.Replace(bold_italics_underline, "<b><i><u>");
-                line = line.Replace(Reverse(bold_italics_underline), "</u></i></b>");
 
+
+                // Font color bgin-end on same line
                 line = GetMeltdownFontColors(line);
 
-                // All liknks on the line. Can't extend over one line
+                // All links on the line. Can't extend over one line
                 line = GetMeltdownLinks(line);
 
                 // All liknks on the line. Can't extend over one line
                 line = GetMarkdownLinks(line);
 
-                string newline = "";
-                if (line.Length > 2)
-                {
-                    if ((line.Substring(0, 2) == "- ") || (line.Substring(0, 2) == "-\t"))
-                    {
-                        line = line.Substring(2);
-                        if (!inList)
-                            newline = "\n<ul>\n<li>" + line + "</li>";
-                        else
-                            newline = "\n<li>" + line + "</li>";
-                        inList = true;
-                    }
-                    else
-                    {
-                        if (inList)
-                            newline = "\n</ul>\n<p>" + line + "</p>";
-                        else
-                            newline = "\n<p>" + line + "</p>";
-                        inList = false;
-                    }
-                }
-                else
-                {
-                    if (inList)
-                        newline = "\n</ul>\n<p>" + line + "</p>";
-                    else
-                        newline = "\n<p>" + line + "</p>";
-                    inList = false;
-                }
-                html += "\n" + newline;
+                line = DoBullet(line, ref inList);
+
+                // Format begin-end on same line
+                line = MapMeltdownFormat2Html(line);
+
+                html += "\n" + line;
             }
             if (inList)
                 html += "\n</ul>\n";
             return html;
+        }
+
+        private static string DoBullet(string line, ref bool inList)
+        {
+            if ( (line.Length > 2)
+                    &&
+            ((line.Substring(0, 2) == "- ") || (line.Substring(0, 2) == "-\t")))
+            {
+                line = line.Substring(2);
+                if (!inList)
+                    line = "\n<ul>\n<li>" + line + "</li>";
+                else
+                    line = "\n<li>" + line + "</li>";
+                inList = true;
+            }
+            else
+            {
+                if (inList)
+                    line = "\n</ul>\n<p>" + line + "</p>";
+                else
+                    line = "\n<p>" + line + "</p>";
+                inList = false;
+            }
+
+            return line;
+        }
+
+        private static string MapMeltdownFormat2Html(string line)
+        {
+            line = line.Replace(bold_italics_underline, "<b><i><u>");
+            line = line.Replace(Reverse(bold_italics_underline), "</u></i></b>");
+
+            line = line.Replace(bold_italics, "<b><i>");
+            line = line.Replace(Reverse(bold_italics), "</i></b>");
+            line = line.Replace(bold_underline, "<b><u>");
+            line = line.Replace(Reverse(bold_underline), "</u></b>");
+            line = line.Replace(italics_underline, "<i><u>");
+            line = line.Replace(Reverse(italics_underline), "</u></i>");
+
+
+            //Bold, Italicand Underline formatting.
+            line = line.Replace(bold, "<b>");
+            line = line.Replace(Reverse(bold), "</b>");
+            line = line.Replace(italics, "<i>");
+            line = line.Replace(Reverse(italics), "</i>");
+            line = line.Replace(underline, "<u>");
+            line = line.Replace(Reverse(underline), "</u>");
+
+
+
+            //line = line.Replace(strikethru,,,,)
+            //line = line.Replace(Reverse(strikethru), ...);
+            return line;
         }
 
         private static string GetMeltdownLinks(string line)
@@ -194,13 +218,13 @@ namespace Meltdown
                         middle = -1;
                 if (middle != -1)
                 {
-                    linkText = line.Substring(start + 2, middle - start - 2);
+                    linkText = line.Substring(start + llink.Length, middle - start - llink.Length);
                     //2Do: Remove or error for invalid link text characters.
-                    Url = line.Substring(middle + 1, end - middle);
+                    Url = line.Substring(middle + 1, end - middle-1);
                 }
                 else
                 {
-                    Url = line.Substring(start + 2, end - start - 2);
+                    Url = line.Substring(start + llink.Length, end - start - llink.Length);
                     linkText = Url;
                 }
                 string link = $"<a href= \"{Url}\">{linkText}</a>";
@@ -209,7 +233,7 @@ namespace Meltdown
                 if (start != 0)
                     before = line.Substring(0, start);
                 if (end != line.Length - 1)
-                    after = line.Substring(end + 2);
+                    after = line.Substring(end + llink.Length);
                 line = $"{before}{link}{after}";
 
             }
@@ -258,10 +282,13 @@ namespace Meltdown
             {
                 foreach (var color in colors)
                 {
-                    string searchForFontColorStart = ccolor + color + Reverse(ccolor);
-                    if (line.ToLower().Contains(searchForFontColorStart.ToLower()))
+                    string searchForFontColorStart = ccolor + color.ToLower() + paramSep;
+                    if (line.ToLower().Contains(searchForFontColorStart))
+                    {
                         line = line.Replace(searchForFontColorStart, "<font color=\"" + $"{color}" + "\">", true, null);
+                    }
                 }
+                line = line.Replace(Reverse(ccolor), "</font>");
             }
             return line;
         }
