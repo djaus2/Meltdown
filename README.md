@@ -86,8 +86,7 @@ character, followed by the Italics second character [-[-(
 *If these specifications are adopted then the notes in the third column are
 defunct.*
 
-**Nb 2:** Markdown syntax has also been implemented: [*\<link
-text\>*](*\<url\>*)
+**Nb 2:** Markdown syntax has also been implemented: [](*%3curl%3e*)
 
 *An alternative specification under consideration is:*
 
@@ -96,9 +95,10 @@ text\>*](*\<url\>*)
 | Bold                   | [[*\<text\>*]]                     |                                                                |
 | Italics                | ((*\<text\>*))                     |                                                                |
 | UnderLine              | {{*\<text\>*}}                     |                                                                |
-| Bold-Italics           | [(*\<text\>*)]                     | \~\~*Order doesn't matter but begin-end must mirror*\~\~       |
-| Bold-Italics-Underline | [({*\<text\>*})]                   | \~\~*Order doesn't matter but begin-end must mirror*\~\~       |
-| Italics-Underline      | ({*\<text\>*})                     | \~\~*Order doesn't matter but begin-end must mirror*\~\~       |
+| Bold-Italics           | [(*\<text\>*)]                     | *Order does matter*                                            |
+| Bold-Underline         | [{*\<text\>*}]                     | *Order does matter*                                            |
+| Italics-Underline      | ({*\<text\>*})                     | *Order does matter*                                            |
+| Bold-Italics-Underline | [({*\<text\>*})]                   | *Order does matter*                                            |
 | Font Color             | (((*\<color name\>*\|*\<text\>*))) |                                                                |
 | Links                  | {{{*\<url\>*}}}                    |                                                                |
 | ,,                     | {{{*\<link text\>*\|*\<url\>*}}}   |                                                                |
