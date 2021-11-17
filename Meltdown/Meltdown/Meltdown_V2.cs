@@ -31,6 +31,8 @@ namespace Meltdown
         private static string ColorPattern = $"*{ccolor}*{paramSep}*{Reverse(ccolor)}*";
         private static string WebPatternwithText = $"*{llink}*{paramSep}*{Reverse(llink)}*";
         private static string WebPatternwithoutText = $"*{llink}*{Reverse(llink)}*";
+        private static string HeadingPatternatStartofLine = $"[[?]]*";
+        private static string ListPatternatStartofLine = $"((?))*";
 
         /// <summary>
         /// Change the default delimeters by sending 1 or 2 Csv lists
@@ -105,6 +107,7 @@ namespace Meltdown
             bool inList = false;
             foreach (var _line in lines)
             {
+                bool isHeading = false;
                 string line = _line; // line get modified hence need copy of the ierator
                 if (string.IsNullOrEmpty(line))
                 {
@@ -117,18 +120,22 @@ namespace Meltdown
                     continue;
                 }
 
-
+                line = Check4HeadinsatStartof(line, ref isHeading, ref inList);
 
                 // Font color bgin-end on same line
                 line = GetMeltdownFontColors(line);
 
-                // All links on the line. Can't extend over one line
+
+                    // All links on the line. Can't extend over one line
                 line = GetMeltdownLinks(line);
 
                 // All liknks on the line. Can't extend over one line
                 line = GetMarkdownLinks(line);
 
-                line = DoBullet(line, ref inList);
+                if (!isHeading)
+                {
+                    line = DoBullet(line, ref inList);
+                }
 
                 // Format begin-end on same line
                 line = MapMeltdownFormat2Html(line);
@@ -293,6 +300,39 @@ namespace Meltdown
             return line;
         }
 
-        
+        private static string Check4HeadinsatStartof(string line, ref bool inList,  ref bool isHeading)
+        {
+            if (System.IO.Enumeration.FileSystemName.MatchesSimpleExpression(HeadingPatternatStartofLine, line))
+            {
+                char ch = line[2];
+                if (char.IsDigit(ch))
+                {
+                    if(inList)
+                    {
+                        line = $"\n<ul>\n<h{ch}>{line.Substring(5)}</h{ch}>";
+                    }
+                    else
+                        line = $"<h{ch}>{line.Substring(5)}</h{ch}>";
+                    isHeading = true;
+                    inList = false;
+                }
+            }
+            return line;
+        }
+
+        private static string Check4ListatStartof(string line)
+        {
+            if (System.IO.Enumeration.FileSystemName.MatchesSimpleExpression(ListPatternatStartofLine, line))
+            {
+                char ch = line[2];
+                if (char.IsDigit(ch))
+                {
+                    line = $"<li>{line.Substring(5)}</li>";
+                }
+            }
+            return line;
+        }
+
+
     }
 }

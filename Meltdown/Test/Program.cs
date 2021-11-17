@@ -7,9 +7,15 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            string msg = "AA[[This is Bold]]BB";
+            Console.WriteLine();
+            string msg = "[[1]]Heading Level 1";
             Console.Write(msg);
             string res = Meltdown_V2.Parse(msg);
+            Console.WriteLine(res);
+
+            msg = "AA[[This is Bold]]BB";
+            Console.Write(msg);
+            res = Meltdown_V2.Parse(msg);
             Console.WriteLine(res);
 
             Console.WriteLine();
