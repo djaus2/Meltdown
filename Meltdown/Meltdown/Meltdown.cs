@@ -285,17 +285,51 @@ namespace Meltdown
 
         private static string GetMeltdownFontColors(string line)
         {
-            if (System.IO.Enumeration.FileSystemName.MatchesSimpleExpression(ColorPattern, line))
+            while (System.IO.Enumeration.FileSystemName.MatchesSimpleExpression(ColorPattern, line))
             {
                 foreach (var color in colors)
                 {
                     string searchForFontColorStart = ccolor + color.ToLower() + paramSep;
-                    if (line.ToLower().Contains(searchForFontColorStart))
+                    bool searchagain = true;
+                    while (searchagain)
                     {
-                        line = line.Replace(searchForFontColorStart, "<font color=\"" + $"{color}" + "\">", true, null);
+                        // serachagain: Having found the color there might be more instances on same line.
+                        int start = line.IndexOf(searchForFontColorStart);
+                        if (start != -1)
+                        {
+                            int mid = start + searchForFontColorStart.Length;
+                            int end = line.IndexOf(Reverse(ccolor), mid);
+                            if (end != -1)
+                            {
+                                string atEnd = "";
+                                if ((end + ccolor.Length)< (line.Length-1))
+                                    atEnd = line.Substring(end + ccolor.Length);
+                                if (start != 0)
+                                {
+                                    line = line.Substring(0, start) + "<font color=\"" + $"{color}" + "\">"
+                                        + line.Substring(mid, end - mid)
+                                        + "</font>"
+                                        + atEnd;
+                                }
+                                else
+                                {
+                                    line = "<font color=\"" + $"{color}" + "\">"
+                                        + line.Substring(mid, end - mid)
+                                        + "</font>"
+                                        + atEnd;
+                                }
+                            }
+                            else
+                                searchagain = false;
+
+                        }
+                        else
+                            searchagain = false;
                     }
+                    // If no more color patterns then stop.
+                    if (!(System.IO.Enumeration.FileSystemName.MatchesSimpleExpression(ColorPattern, line)))
+                            break;
                 }
-                line = line.Replace(Reverse(ccolor), "</font>");
             }
             return line;
         }
