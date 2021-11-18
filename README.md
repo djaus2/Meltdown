@@ -97,7 +97,7 @@ some other entities; currently for HTML links.[](*%3curl%3e*)
 | Links                  | {{{*\<url\>*}}}                    |                                                                |
 | ,,                     | {{{*\<link text\>*\|*\<url\>*}}}   |                                                                |
 | Heading                | [[n]] at start of line             |  where n=1..9 eg ```[[2]]Heading Level 2```                    |
-| Bullet List            | -<space> or -<tab> at start of line| Only one level of list                                         |
+| Bullet List            | -space or -tab at start of line    | Only one level of list                                         |
 | List Multilevel        | ((n)) at start of line             | where n=1..9   _See example at bottom_                         |
 
 ## Test App Output:
