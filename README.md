@@ -1,4 +1,4 @@
-# Meltdown
+# Meltdown V1.0
 
 A simple to code and use Markup language making much use of brackets.
 
@@ -6,7 +6,7 @@ The key point is to bracket the text that is to be formatted. Also, some line
 based content is simple to annotate with some characters at the start of the
 line.
 
-**This is a work in progress at the moment.**
+**This is a work in now COMPLETE subject to bug fixes and improvements.**
 
 ## Updates
 
