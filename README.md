@@ -1,4 +1,4 @@
-# Meltdown
+# Meltdown V1.0
 
 A simple to code and use Markup language making much use of brackets.
 
@@ -6,7 +6,7 @@ The key point is to bracket the text that is to be formatted. Also, some line
 based content is simple to annotate with some characters at the start of the
 line.
 
-**This is a work in progress at the moment.**
+**This is a work in now COMPLETE subject to bug fixes and improvements.**
 
 ## Updates
 
@@ -25,9 +25,8 @@ line.
     
 5.  Simple lists -<space> and -<tab> at start now work. One level only.  
     And Exntended multi level list too. Lines start with ((n)) where n is line level.
-
-## 2Dos
--   Tables as Csv lines (perhaps)
+    
+6.  Table rows start with ((T)) and cell text are Csv list. First row is TH
 
 ## Context
 
@@ -96,7 +95,10 @@ some other entities; currently for HTML links.[](*%3curl%3e*)
 | Font Color             | (((*\<color name\>*\|*\<text\>*))) |                                                                |
 | Links                  | {{{*\<url\>*}}}                    |                                                                |
 | ,,                     | {{{*\<link text\>*\|*\<url\>*}}}   |                                                                |
-| Heading                | [[n]]                              | [[n]] is at start of line where n=1..9 eg [[2]]Heading Level 2 |
+| Heading                | [[n]] at start of line             |  where n=1..9 eg ```[[2]]Heading Level 2```                    |
+| Bullet List            | -space or -tab at start of line    | Only one level of list                                         |
+| List Multilevel        | ((n)) at start of line             | where n=1..9   _See example at bottom_                         |
+| Table                  | ((T)) at start of each line        | Rows are Csv list of cell text. First row is Table Header      |
 
 ## Test App Output:
 
@@ -138,12 +140,6 @@ AA{{{Click here|https://sportronics.com.au}}}BB
 <p>AA<b>This is Bold</b>BB</p>
 
 <p>AA<i>This is Italics</i>BB</p>
-
-<p>AA<u>This is Underline</u>BB</p>
-
-<p>AA<font color="Red">This is red</font>BB<font color="Blue">This is blue</font>CC</p>
-
-<p>AA<b><i><u>This is bold italics and underline</u></i></b>BB</p>
 
 <p>AA<a href= "https://sportronics.com.au">https://sportronics.com.au</a>BB</p>
 
@@ -204,3 +200,23 @@ AA{{{Click here|https://sportronics.com.au}}}BB
 </ul></li>
 <li> Extended list level one</li>
 </ul>
+
+```
+((T))Name,Age,Country
+((T))Fred,23,Australia
+((T))Sue,45,USA
+((T))John,21,NZ
+   
+<table>
+<th><td>Name</td><td>Age</td><td>Country</td></th>
+<tr><td>Fred</td><td>23</td><td>Australia</td></tr>
+<tr><td>Sue</td><td>45</td><td>USA</td></tr>
+<tr><td>John</td><td>21</td><td>NZ</td></tr>
+</table
+```
+<table>
+<tr><th>Name</th><th>Age</th><th>Country</th></tr>
+<tr><td>Fred</td><td>23</td><td>Australia</td></tr>
+<tr><td>Sue</td><td>45</td><td>USA</td></tr>
+<tr><td>John</td><td>21</td><td>NZ</td></tr>
+</table 
