@@ -133,7 +133,25 @@ AA{{{https://sportronics.com.au}}}BB
 AA{{{Click here|https://sportronics.com.au}}}BB
 
 <p>AA<a href= "https://sportronics.com.au">Click here</a>BB</p>
+```
 
+<h1>Heading Level 1</h1>
+
+<p>AA<b>This is Bold</b>BB</p>
+
+<p>AA<i>This is Italics</i>BB</p>
+
+<p>AA<u>This is Underline</u>BB</p>
+
+<p>AA<font color="Red">This is red</font>BB<font color="Blue">This is blue</font>CC</p>
+
+<p>AA<b><i><u>This is bold italics and underline</u></i></b>BB</p>
+
+<p>AA<a href= "https://sportronics.com.au">https://sportronics.com.au</a>BB</p>
+
+<p>AA<a href= "https://sportronics.com.au">Click here</a>BB</p>
+
+```
 - Simple list line one
 -       Simple list line 2 with tab
 - Simple list line three
@@ -145,8 +163,15 @@ AA{{{Click here|https://sportronics.com.au}}}BB
 <li>Simple list line three</li>
 <li>Simple list line 4 with tab</li>
 </ul>
+```
+<ul>
+<li>Simple list line one</li>
+<li>Simple list line 2 with tab</li>
+<li>Simple list line three</li>
+<li>Simple list line 4 with tab</li>
+</ul>
 
-
+```
 ((1)) Extended list level one
 ((1)) Extended list level 1
 ((2)) Extended list level two
@@ -168,3 +193,16 @@ AA{{{Click here|https://sportronics.com.au}}}BB
 <li> Extended list level one</li>
 </ul>
 ```
+<ul>
+<li> Extended list level one
+</li>
+<li> Extended list level 1
+<ul>
+<li> Extended list level two
+<ul>
+<li> Extended list level three
+</ul></li>
+<li> Extended list level two</li>
+</ul></li>
+<li> Extended list level one</li>
+</ul>
