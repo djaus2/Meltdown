@@ -7,10 +7,14 @@ namespace Test
     {
         static void Main(string[] args)
         {
+            string msg;
+            string res;
+
+            /*
             Console.WriteLine();
-            string msg = "[[1]]Heading Level 1";
+            msg = "[[1]]Heading Level 1";
             Console.Write(msg);
-            string res = Meltdown.Meltdown.Parse(msg);
+            res = Meltdown.Meltdown.Parse(msg);
             Console.WriteLine(res);
 
             Console.WriteLine();
@@ -54,6 +58,24 @@ namespace Test
             Console.Write(msg);
             res = Meltdown.Meltdown.Parse(msg);
             Console.WriteLine(res);
+
+            */
+            Console.WriteLine();
+            msg = "- Simple list line one\n-\tSimple list line 2 with tab";
+            msg += "\n- Simple list line three\n-\tSimple list line 4 with tab";
+            Console.Write(msg);
+            res = Meltdown.Meltdown.Parse(msg);
+            Console.WriteLine(res);
+
+
+            Console.WriteLine();
+             msg = "((1)) Extended list level one\n((1)) Extended list level 1";
+            msg += "\n((2)) Extended list level two\n((3)) Extended list level three";
+            msg += "\n((2)) Extended list level two\n((1)) Extended list level one";
+            Console.Write(msg);
+             res = Meltdown.Meltdown.Parse(msg);
+            Console.WriteLine(res);
+
 
             Console.ReadLine();
         }

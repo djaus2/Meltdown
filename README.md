@@ -102,7 +102,7 @@ some other entities; currently for HTML links.[](*%3curl%3e*)
 
 ## Test App Output:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 [[1]]Heading Level 1
 <h1>Heading Level 1</h1>
 
@@ -133,4 +133,38 @@ AA{{{https://sportronics.com.au}}}BB
 AA{{{Click here|https://sportronics.com.au}}}BB
 
 <p>AA<a href= "https://sportronics.com.au">Click here</a>BB</p>
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Simple list line one
+-       Simple list line 2 with tab
+- Simple list line three
+-       Simple list line 4 with tab
+
+<ul>
+<li>Simple list line one</li>
+<li>Simple list line 2 with tab</li>
+<li>Simple list line three</li>
+<li>Simple list line 4 with tab</li>
+</ul>
+
+
+((1)) Extended list level one
+((1)) Extended list level 1
+((2)) Extended list level two
+((3)) Extended list level three
+((2)) Extended list level two
+((1)) Extended list level one
+
+<ul>
+<li> Extended list level one
+</li>
+<li> Extended list level 1
+<ul>
+<li> Extended list level two
+<ul>
+<li> Extended list level three
+</ul></li>
+<li> Extended list level two</li>
+</ul></li>
+<li> Extended list level one</li>
+</ul>
+```
