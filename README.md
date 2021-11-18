@@ -96,7 +96,9 @@ some other entities; currently for HTML links.[](*%3curl%3e*)
 | Font Color             | (((*\<color name\>*\|*\<text\>*))) |                                                                |
 | Links                  | {{{*\<url\>*}}}                    |                                                                |
 | ,,                     | {{{*\<link text\>*\|*\<url\>*}}}   |                                                                |
-| Heading                | [[n]]                              | [[n]] is at start of line where n=1..9 eg [[2]]Heading Level 2 |
+| Heading                | [[n]] at start of line             |  where n=1..9 eg ```[[2]]Heading Level 2```                    |
+| Bullet List            | -<space> or -<tab> at start of line| Only one level of list                                         |
+| List Multilevel        | ((n)) at start of line             | where n=1..9   _See example at bottom_                         |
 
 ## Test App Output:
 
@@ -138,12 +140,6 @@ AA{{{Click here|https://sportronics.com.au}}}BB
 <p>AA<b>This is Bold</b>BB</p>
 
 <p>AA<i>This is Italics</i>BB</p>
-
-<p>AA<u>This is Underline</u>BB</p>
-
-<p>AA<font color="red">This is red</font>BB<font color="blue">This is blue</font>CC</p>
-
-<p>AA<b><i><u>This is bold italics and underline</u></i></b>BB</p>
 
 <p>AA<a href= "https://sportronics.com.au">https://sportronics.com.au</a>BB</p>
 
