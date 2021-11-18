@@ -141,7 +141,7 @@ AA{{{Click here|https://sportronics.com.au}}}BB
 
 <p>AA<u>This is Underline</u>BB</p>
 
-<p>AA<font color="Red">This is red</font>BB<font color="Blue">This is blue</font>CC</p>
+<p>AA<font color="red">This is red</font>BB<font color="blue">This is blue</font>CC</p>
 
 <p>AA<b><i><u>This is bold italics and underline</u></i></b>BB</p>
 
