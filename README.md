@@ -10,25 +10,23 @@ line.
 
 ## Updates
 
-1.  A second version of the class that formalises the functionality making it
-    easy to change the delimiters used. Also key steps (font color and links)
+1.  A second version of the class that formalises the functionality making it  
+    easy to change the delimiters used. Also key steps (font color and links)  
     are a separate functions. Uses the schema as below.
 
 2.  Test app has some test strings.
 
-3.  Implemented headings. eg,  
+3.  Implemented headings. eg,   
     `[[2]]At start of line` becomes  
     `<h2>At start of Line</h2>`
 
-4.  `This page has been refined such that only one schema is presented, as
+4.  `This page has been refined such that only one schema is presented, as  
     adopted and only one class in the code that implements this.`
+    
+5.  Simple lists -<space> and -<tab> at start now work. One level only.  
+    And Exntended multi level list too. Lines start with ((n)) where n is line level.
 
 ## 2Dos
-
--   Implement lists with preceding characters on line as per Heading Levels.
-
-    -   Can have multiple levels.
-
 -   Tables as Csv lines (perhaps)
 
 ## Context
