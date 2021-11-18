@@ -25,9 +25,8 @@ line.
     
 5.  Simple lists -<space> and -<tab> at start now work. One level only.  
     And Exntended multi level list too. Lines start with ((n)) where n is line level.
-
-## 2Dos
--   Tables as Csv lines (perhaps)
+    
+6.  Table rows start with ((T)) and cell text are Csv list. First row is TH
 
 ## Context
 
@@ -99,6 +98,7 @@ some other entities; currently for HTML links.[](*%3curl%3e*)
 | Heading                | [[n]] at start of line             |  where n=1..9 eg ```[[2]]Heading Level 2```                    |
 | Bullet List            | -space or -tab at start of line    | Only one level of list                                         |
 | List Multilevel        | ((n)) at start of line             | where n=1..9   _See example at bottom_                         |
+| Table                  | ((T)) at start of each line        | Rows are CSv list of cell text. First row is Table Header      |
 
 ## Test App Output:
 
@@ -200,3 +200,23 @@ AA{{{Click here|https://sportronics.com.au}}}BB
 </ul></li>
 <li> Extended list level one</li>
 </ul>
+
+```
+((T))Name,Age,Country
+((T))Fred,23,Australia
+((T))Sue,45,USA
+((T))John,21,NZ
+   
+<table>
+<th><td>Name</td><td>Age</td><td>Country</td></th>
+<tr><td>Fred</td><td>23</td><td>Australia</td></tr>
+<tr><td>Sue</td><td>45</td><td>USA</td></tr>
+<tr><td>John</td><td>21</td><td>NZ</td></tr>
+</table
+```
+<table>
+<tr><th>Name</th><th>Age</th><th>Country</th></tr>
+<tr><td>Fred</td><td>23</td><td>Australia</td></tr>
+<tr><td>Sue</td><td>45</td><td>USA</td></tr>
+<tr><td>John</td><td>21</td><td>NZ</td></tr>
+</table 
