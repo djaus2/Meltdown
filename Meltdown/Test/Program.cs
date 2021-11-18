@@ -76,6 +76,15 @@ namespace Test
              res = Meltdown.Meltdown.Parse(msg);
             Console.WriteLine(res);
 
+            Console.WriteLine();
+            msg = "((T))Name,Age,Country";
+            msg += "\n((T))Fred,23,Australia";
+            msg += "\n((T))Sue,45,USA";
+            msg += "\n((T))John,21,NZ";
+            Console.Write(msg);
+            res = Meltdown.Meltdown.Parse(msg);
+            Console.WriteLine(res);
+
 
             Console.ReadLine();
         }

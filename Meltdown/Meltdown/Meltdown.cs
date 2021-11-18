@@ -39,7 +39,7 @@ namespace Meltdown
         /// </summary>
         /// <param name="formatCsv">CSV list of bold,italic,underline strings</param>
         /// <param name="webColorCsv">Csv list of font color and link deleimeters plus arg delimeter</param>
-        static void  SetDelimters(string formatCsv,string  webColorCsv="(((,{{{,|")
+        static void SetDelimters(string formatCsv, string webColorCsv = "(((,{{{,|")
         {
             if (string.IsNullOrEmpty(formatCsv))
                 return;
@@ -54,11 +54,11 @@ namespace Meltdown
             delims = webColorCsv.Split(',');
             if (delims.Length < 3)
                 return;
-            ccolor= delims[0];
+            ccolor = delims[0];
             llink = delims[1];
             string strn = delims[2];
             if (strn.Length == 1)
-                paramSep = strn[0];;
+                paramSep = strn[0]; ;
         }
 
         // This is a subset of permitted HTML colors
@@ -91,12 +91,12 @@ namespace Meltdown
         {
             char[] charArray = s.ToCharArray();
             Array.Reverse(charArray);
-            string ret =  new string(charArray);
+            string ret = new string(charArray);
             ret = ret.Replace('[', ']').Replace('(', ')').Replace('{', '}');//.Replace('<','>');
             return ret;
         }
 
-        public static string Parse (string txt)
+        public static string Parse(string txt)
         {
             if (string.IsNullOrEmpty(txt))
                 return "";
@@ -106,6 +106,7 @@ namespace Meltdown
 
             bool inList = false;
             int ExntendedListLevel = 0;
+            bool inTable = false;
             foreach (var _line in lines)
             {
                 bool isHeading = false;
@@ -116,7 +117,7 @@ namespace Meltdown
                     {
                         html += "\n</ul>\n";
                     }
-                    else 
+                    else
                         html += "\n";
                     continue;
                 }
@@ -132,10 +133,15 @@ namespace Meltdown
                 // Nb: List modes are mutually exclusive.
                 if (!isHeading)
                 {
-                    if(!inList)
-                        line = Check4ListatStartof(line, ref ExntendedListLevel);
-                    if (ExntendedListLevel == 0)
-                        line = DoBullet(line, ref inList);
+                    if ((!inList) && (ExntendedListLevel == 0))
+                        line = Check4TableatStartof(line, ref html, ref inTable);
+                    if (!inTable)
+                    {
+                        if (!inList)
+                            line = Check4ListatStartof(line, ref ExntendedListLevel);
+                        if (ExntendedListLevel == 0)
+                            line = DoBullet(line, ref inList);
+                    }
                 }
 
                 // Font color begin-end on same line
@@ -143,7 +149,7 @@ namespace Meltdown
                 // Nb: Each paragraph requires a separate font color.
 
 
-                    // All links on the line. Can't extend over one line
+                // All links on the line. Can't extend over one line
                 line = GetMeltdownLinks(line);
 
                 // All liknks on the line. Can't extend over one line
@@ -156,16 +162,18 @@ namespace Meltdown
 
                 html += "\n" + line;
             }
-            if (inList) 
+            if (inList)
                 html += "\n</ul>\n";
-            else if(ExntendedListLevel > 0)
+            else if (ExntendedListLevel > 0)
                 html += "\n</ul>\n";
+            else if (inTable)
+                html += "\n</table\n";
             return html;
         }
 
         private static string DoBullet(string line, ref bool inList)
         {
-            if ( (line.Length > 2)
+            if ((line.Length > 2)
                     &&
             ((line.Substring(0, 2) == "- ") || (line.Substring(0, 2) == "-\t")))
             {
@@ -243,7 +251,7 @@ namespace Meltdown
                 {
                     linkText = line.Substring(start + llink.Length, middle - start - llink.Length);
                     //2Do: Remove or error for invalid link text characters.
-                    Url = line.Substring(middle + 1, end - middle-1);
+                    Url = line.Substring(middle + 1, end - middle - 1);
                 }
                 else
                 {
@@ -318,7 +326,7 @@ namespace Meltdown
                             if (end != -1)
                             {
                                 string atEnd = "";
-                                if ((end + ccolor.Length)< (line.Length-1))
+                                if ((end + ccolor.Length) < (line.Length - 1))
                                     atEnd = line.Substring(end + ccolor.Length);
                                 if (start != 0)
                                 {
@@ -344,20 +352,20 @@ namespace Meltdown
                     }
                     // If no more color patterns then stop.
                     if (!(System.IO.Enumeration.FileSystemName.MatchesSimpleExpression(ColorPattern, line)))
-                            break;
+                        break;
                 }
             }
             return line;
         }
 
-        private static string Check4HeadinsatStartof(string line, ref bool isHeading,   ref bool inList)
+        private static string Check4HeadinsatStartof(string line, ref bool isHeading, ref bool inList)
         {
             if (System.IO.Enumeration.FileSystemName.MatchesSimpleExpression(HeadingPatternatStartofLine, line))
             {
                 char ch = line[2];
                 if (char.IsDigit(ch))
                 {
-                    if(inList)
+                    if (inList)
                     {
                         line = $"\n<ul>\n<h{ch}>{line.Substring(5)}</h{ch}>";
                     }
@@ -377,14 +385,14 @@ namespace Meltdown
         /// <param name="line">The line being checked</param>
         /// <param name="extendedListLevel">Current list depth. 0= not in list</param>
         /// <returns>The processed line</returns>
-        private static string Check4ListatStartof(string line, ref int extendedListLevel) 
+        private static string Check4ListatStartof(string line, ref int extendedListLevel)
         {
             if (System.IO.Enumeration.FileSystemName.MatchesSimpleExpression(ListPatternatStartofLine, line))
             {
                 char ch = line[2];
                 if (char.IsDigit(ch))
                 {
-                    int level = ((int) ch) -48;
+                    int level = ((int)ch) - 48;
                     if (level == extendedListLevel)
                         line = $"</li>\n<li>{line.Substring(5)}";
                     else
@@ -435,6 +443,39 @@ namespace Meltdown
             return line;
         }
 
+        /// <summary>
+        /// Table is a Csv list for each line. First is TH
+        /// </summary>
+        /// <param name="line"></param>
+        /// <param name="html"></param>
+        /// <param name="inTable"></param>
+        /// <returns></returns>
+        private static string Check4TableatStartof(string line, ref string html, ref bool inTable)
+        {
+            if (System.IO.Enumeration.FileSystemName.MatchesSimpleExpression("((T))*", line))
+            {
+                char ch = line[2];
+                if (ch == 'T')
+                {
+                    if (!inTable)
+                    {
+                        inTable = true;
+                        html += "\n<table>";
+                        line = "<tr><th>" + line.Substring(ListPatternatStartofLine.Length-1).Replace(",", "</th><th>") + "</th></tr>";
+                    }
+                    else
+                    {
+                        line = "<tr><td>" + line.Substring(ListPatternatStartofLine.Length-1).Replace(",", "</td><td>") + "</td></tr>";
+                    }
 
+                }
+            }
+            else if (inTable == true)
+            {
+                html += "\n</table>\n";
+                inTable = false;
+            }
+            return line;
+        }
     }
 }
