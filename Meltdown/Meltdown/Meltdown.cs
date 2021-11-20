@@ -165,7 +165,13 @@ namespace Meltdown
             if (inList)
                 html += "\n</ul>\n";
             else if (ExntendedListLevel > 0)
-                html += "\n</ul>\n";
+            {
+                string post = "";
+                for (int i = ExntendedListLevel; i != 0; i--)
+                    post += "</ul>\n";
+                html += post;
+                ExntendedListLevel = 0;
+            }
             else if (inTable)
                 html += "\n</table\n";
             return html;
@@ -434,7 +440,7 @@ namespace Meltdown
                 if (extendedListLevel != 0)
                 {
                     string pre = "";
-                    for (int i = 0; i < extendedListLevel; i++)
+                    for (int i = extendedListLevel; i != 0; i--)
                         pre += "</ul>\n";
                     line = pre + line;
                     extendedListLevel = 0;
