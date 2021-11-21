@@ -1,4 +1,4 @@
-# Meltdown V1.0
+# Meltdown V1.1
 
 A simple to code and use Markup language making much use of brackets.
 
@@ -26,7 +26,7 @@ line.
 5.  Simple lists -<space> and -<tab> at start now work. One level only.  
     And Exntended multi level list too. Lines start with ((n)) where n is line level.
     
-6.1 Table Header row starts with ((T)) Headings are a Csv list  
+  6.1 Table Header row starts with ((T)) Headings are a Csv list  
     Table data rows start with ((t)). Cell data is a Csv list
 
 ## Context
@@ -102,7 +102,7 @@ some other entities; currently for HTML links.[](*%3curl%3e*)
 | Bullet List            | -space or -tab at start of line    | Only one level of list                                         |
 | List Multilevel        | ((n)) at start of line             | where n=1..9   _See example at bottom_                         |
 | Table                  | ((T)) at start of each line        | Table Header row. Headings are Csv list.                       |
-|  ,,                    | ((t)) at start of each line        | Table row. Celss are a Csv list                                |
+|  ,,                    | ((t)) at start of each line        | Table Data row. Cells are a Csv list                           |
 
 ## Test App Output:
 
