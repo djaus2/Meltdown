@@ -467,13 +467,17 @@ namespace Meltdown
                     {
                         inTable = true;
                         html += "\n<table>";
-                        line = "<tr><th>" + line.Substring(ListPatternatStartofLine.Length-1).Replace(",", "</th><th>") + "</th></tr>";
                     }
-                    else
+                    line = "<tr><th>" + line.Substring(ListPatternatStartofLine.Length-1).Replace(",", "</th><th>") + "</th></tr>";
+                }
+                else if (ch == 't')
+                {
+                    if (!inTable)
                     {
-                        line = "<tr><td>" + line.Substring(ListPatternatStartofLine.Length-1).Replace(",", "</td><td>") + "</td></tr>";
+                        inTable = true;
+                        html += "\n<table>";
                     }
-
+                    line = "<tr><td>" + line.Substring(ListPatternatStartofLine.Length - 1).Replace(",", "</td><td>") + "</td></tr>";
                 }
             }
             else if (inTable == true)

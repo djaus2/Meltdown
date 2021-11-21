@@ -26,7 +26,8 @@ line.
 5.  Simple lists -<space> and -<tab> at start now work. One level only.  
     And Exntended multi level list too. Lines start with ((n)) where n is line level.
     
-6.  Table rows start with ((T)) and cell text are Csv list. First row is TH
+6.1 Table Header row starts with ((T)) Headings are a Csv list  
+    Table data rows start with ((t)). Cell data is a Csv list
 
 ## Context
 
@@ -98,7 +99,8 @@ some other entities; currently for HTML links.[](*%3curl%3e*)
 | Heading                | [[n]] at start of line             |  where n=1..9 eg ```[[2]]Heading Level 2```                    |
 | Bullet List            | -space or -tab at start of line    | Only one level of list                                         |
 | List Multilevel        | ((n)) at start of line             | where n=1..9   _See example at bottom_                         |
-| Table                  | ((T)) at start of each line        | Rows are Csv list of cell text. First row is Table Header      |
+| Table                  | ((T)) at start of each line        | Table Header row. Headings are Csv list.                       |
+|  ,,                    | ((t)) at start of each line        | Table row. Celss are a Csv list                                |
 
 ## Test App Output:
 
@@ -203,9 +205,9 @@ AA{{{Click here|https://sportronics.com.au}}}BB
 
 ```
 ((T))Name,Age,Country
-((T))Fred,23,Australia
-((T))Sue,45,USA
-((T))John,21,NZ
+((t))Fred,23,Australia
+((t))Sue,45,USA
+((t))John,21,NZ
    
 <table>
 <th><td>Name</td><td>Age</td><td>Country</td></th>
