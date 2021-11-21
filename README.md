@@ -76,6 +76,8 @@ The generated content is HTML so
 
 -   Desirable: Text can be written in Word and with simple modification be used
     with a copy a paste as Meltdown.
+-   Some additional features are indicated by 5 characters at start of the a line:  
+    Headings [[n]], Multilevel list ((n)) and Table ((T))
 
 **Nb 1:** Bold, italics and underline formats are a pair of [,{ or {. Other
 combinations are used for pairs of these format. A delimiter consisting of all 3
