@@ -69,8 +69,8 @@ namespace Test
 
 
             Console.WriteLine();
-             msg = "((1)) Extended list level one\n((1)) Extended list level 1";
-            msg += "\n((2)) Extended list level two\n((3)) Extended list level three";
+            msg = "((1)) Extended list level one\n((1)) Extended list level 1";
+            msg += "\n((3)) Extended list level two\n((3)) Extended list level three";
             msg += "\n((2)) Extended list level two\n((1)) Extended list level one";
             Console.Write(msg);
              res = Meltdown.Meltdown.Parse(msg);

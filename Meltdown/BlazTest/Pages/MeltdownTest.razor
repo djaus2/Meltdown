@@ -4,12 +4,24 @@
 
 <h1>Meltdown Markup Test</h1>
 
+<p>Enter or paste Meltdown Markup in <b><i>Text:</i></b> textbox. Alt. Try the samples below.</p>
 Text:<br /> <textarea  @bind="@meltdownText"   /><br />
 <button class="btn btn-primary" @onclick="MarkupText">Parse Markup using Meltdown</button> <br />
 Markup: <br />
-<textarea @bind="@htmlText"  /> <br />
-The Render HTML:<br />
+<textarea @bind="@htmlText" /> <br />
+<br />
+<h2>Try these:</h2>
+<button class="btn btn-primary" @onclick="Formats">Sample Formnats</button> <br />
+<button class="btn btn-primary" @onclick="SomeLinks">Sample Links</button> <br />
+<button class="btn btn-primary" @onclick="SimpleList">Sample Simple List</button> <br />
+<button class="btn btn-primary" @onclick="MultilevelList">Sample Multi-Level List</button> <br />
+<button class="btn btn-primary" @onclick="SampleTable">Sample Table</button> <br />
+<br />
+
+<br />
+The Rendered HTML:<br />
 @((MarkupString)@htmlText)
+
 
 @code {
 
@@ -18,6 +30,56 @@ The Render HTML:<br />
 
     private void MarkupText()
     {
+        htmlText = Meltdown.Meltdown.Parse(meltdownText);
+        StateHasChanged();
+    }
+
+    private void Formats()
+    {
+        string msg = "[[1]]Heading Level 1";
+        msg +="\n" + "AA[[This is Bold]]BB";
+        msg +="\n" +  "AA((This is Italics))BB";
+        msg +="\n" +  "AA{{This is Underline}}BB";;
+        msg +="\n" +  "AA(((red|This is red)))BB(((blue|This is blue)))CC";
+        meltdownText = msg;
+        htmlText = Meltdown.Meltdown.Parse(meltdownText);
+        StateHasChanged();
+    }
+
+    private void SomeLinks()
+    {
+        string msg = "AA{{{Click here|https://sportronics.com.au}}}BB";
+        msg += "\n" + "AA{{{https://sportronics.com.au}}}BB";
+        meltdownText = msg;
+        htmlText = Meltdown.Meltdown.Parse(meltdownText);
+        StateHasChanged();
+    }
+    private void SimpleList()
+    {
+        string msg = "- Simple list line one\n-\tSimple list line 2 with tab";
+        msg += "\n- Simple list line three\n-\tSimple list line 4 with tab";
+        meltdownText = msg;
+        htmlText = Meltdown.Meltdown.Parse(meltdownText);
+        StateHasChanged();
+    }
+
+        private void MultilevelList()
+    {
+        string msg = "((1)) Extended list level one\n((1)) Extended list level 1";
+        msg += "\n((2)) Extended list level two\n((3)) Extended list level three";
+        msg += "\n((2)) Extended list level two\n((1)) Extended list level one";
+        meltdownText = msg;
+        htmlText = Meltdown.Meltdown.Parse(meltdownText);
+        StateHasChanged();
+    }
+
+    private void SampleTable()
+    {
+        string msg = "((T))Name,Age,Country";
+        msg += "\n((t))Fred,23,Australia";
+        msg += "\n((t))Sue,45,USA";
+        msg += "\n((t))John,21,NZ";
+        meltdownText = msg;
         htmlText = Meltdown.Meltdown.Parse(meltdownText);
         StateHasChanged();
     }
