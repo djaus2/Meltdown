@@ -30,7 +30,7 @@ line.
     Table data rows start with ((t)). Cell data is a Csv list
 
 7.  Added BlazTest a Blazor Serer App with which you can compose or paste text that then then gets parsed by Meltdown. 
-    Shows the rendered Html as well. Some sample on offer too.
+    Shows the rendered Html as well. Some samples on offer like the console Test app as well.
 
 ## Context
 
