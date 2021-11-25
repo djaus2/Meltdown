@@ -223,4 +223,4 @@ AA{{{Click here|https://sportronics.com.au}}}BB
 <tr><td>Fred</td><td>23</td><td>Australia</td></tr>
 <tr><td>Sue</td><td>45</td><td>USA</td></tr>
 <tr><td>John</td><td>21</td><td>NZ</td></tr>
-</table 
+    </table> 
