@@ -1,4 +1,4 @@
-# Meltdown V1.1
+# Meltdown V1.2
 
 A simple to code and use Markup language making much use of brackets.
 
