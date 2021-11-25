@@ -26,8 +26,11 @@ line.
 5.  Simple lists -<space> and -<tab> at start now work. One level only.  
     And Exntended multi level list too. Lines start with ((n)) where n is line level.
     
-  6.1 Table Header row starts with ((T)) Headings are a Csv list  
+6.  Table Header row starts with ((T)) Headings are a Csv list  
     Table data rows start with ((t)). Cell data is a Csv list
+
+7.  Added BlazTest a Blazor Serer App that yiu can compose or patse text then then gets parsed by Meltdown. 
+    Shows the rendered Html as well.
 
 ## Context
 
