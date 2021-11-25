@@ -1,0 +1,25 @@
+﻿@page "/"
+@page "/meltdowntest"
+
+
+<h1>Meltdown Markup Test</h1>
+
+Text:<br /> <textarea  @bind="@meltdownText"   /><br />
+<button class="btn btn-primary" @onclick="MarkupText">Parse Markup using Meltdown</button> <br />
+Markup: <br />
+<textarea @bind="@htmlText"  /> <br />
+The Render HTML:<br />
+@((MarkupString)@htmlText)
+
+@code {
+
+    string meltdownText;
+    string htmlText;
+
+    private void MarkupText()
+    {
+        htmlText = Meltdown.Meltdown.Parse(meltdownText);
+        StateHasChanged();
+    }
+
+}
