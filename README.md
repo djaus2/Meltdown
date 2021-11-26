@@ -8,6 +8,8 @@ line.
 
 **This is a work in now COMPLETE subject to bug fixes and improvements.**
 
+[See blog posts on this](https://davidjones.sportronics.com.au/search.html?query=Meltdown)
+
 ## Updates
 
 1.  A second version of the class that formalises the functionality making it  
