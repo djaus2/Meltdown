@@ -6,7 +6,7 @@ The key point is to bracket the text that is to be formatted. Also, some line
 based content is simple to annotate with some characters at the start of the
 line.
 
-**This is a work in now COMPLETE subject to bug fixes and improvements.**
+**This work is now COMPLETE subject to bug fixes and improvements.**
 
 [See blog posts on this](https://davidjones.sportronics.com.au/search.html?query=Meltdown)
 
