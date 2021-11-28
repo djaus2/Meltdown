@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meltdown", "Meltdown\Meltdo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{A99AFB4F-CF59-4682-AC46-560721D10D9C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazMail", "BlazMail\BlazMail.csproj", "{30910A57-7D81-4309-84B7-B939D2C992B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A99AFB4F-CF59-4682-AC46-560721D10D9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A99AFB4F-CF59-4682-AC46-560721D10D9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A99AFB4F-CF59-4682-AC46-560721D10D9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30910A57-7D81-4309-84B7-B939D2C992B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30910A57-7D81-4309-84B7-B939D2C992B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30910A57-7D81-4309-84B7-B939D2C992B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30910A57-7D81-4309-84B7-B939D2C992B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
