@@ -31,8 +31,9 @@ line.
 6.  Table Header row starts with ((T)) Headings are a Csv list  
     Table data rows start with ((t)). Cell data is a Csv list
 
-7.  Added BlazTest a Blazor Serer App with which you can compose or paste text that then then gets parsed by Meltdown. 
+7.  Added BlazTest a Blazor Server App with which you can compose or paste text that then then gets parsed by Meltdown. 
     Shows the rendered Html as well. Some samples on offer like the console Test app as well.
+8.  Meltdown class sperated into 2 files with delimeters in the second file.
 
 ## Context
 
