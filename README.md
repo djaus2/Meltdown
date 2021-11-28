@@ -1,4 +1,4 @@
-# Meltdown V1.1
+# Meltdown V1.2
 
 A simple to code and use Markup language making much use of brackets.
 
@@ -6,7 +6,9 @@ The key point is to bracket the text that is to be formatted. Also, some line
 based content is simple to annotate with some characters at the start of the
 line.
 
-**This is a work in now COMPLETE subject to bug fixes and improvements.**
+**This work is now COMPLETE subject to bug fixes and improvements.**
+
+[See blog posts on this](https://davidjones.sportronics.com.au/search.html?query=Meltdown)
 
 ## Updates
 
@@ -26,8 +28,11 @@ line.
 5.  Simple lists -<space> and -<tab> at start now work. One level only.  
     And Exntended multi level list too. Lines start with ((n)) where n is line level.
     
-  6.1 Table Header row starts with ((T)) Headings are a Csv list  
+6.  Table Header row starts with ((T)) Headings are a Csv list  
     Table data rows start with ((t)). Cell data is a Csv list
+
+7.  Added BlazTest a Blazor Serer App with which you can compose or paste text that then then gets parsed by Meltdown. 
+    Shows the rendered Html as well. Some samples on offer like the console Test app as well.
 
 ## Context
 
@@ -223,4 +228,4 @@ AA{{{Click here|https://sportronics.com.au}}}BB
 <tr><td>Fred</td><td>23</td><td>Australia</td></tr>
 <tr><td>Sue</td><td>45</td><td>USA</td></tr>
 <tr><td>John</td><td>21</td><td>NZ</td></tr>
-</table 
+    </table> 
