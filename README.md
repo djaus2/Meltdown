@@ -102,7 +102,7 @@ some other entities; currently for HTML links.[](*%3curl%3e*)
 | Bold-Underline         | ```[{text}]```                     | *Order does matter*                                            |
 | Italics-Underline      | ```({text})```                     | *Order does matter*                                            |
 | Bold-Italics-Underline | ```[({text})]```                   | *Order does matter*                                            |
-| Font Color             | ```((color name|\text))``` |                                                                |
+| Font Color             | ```((color name|text))``` |                                                                |
 | Links                  | ```<<url>>```                    |                                                                |
 | ,,                     | ```<<link text\|url>>```  |       
 | Heading                | ```[[n]]``` at start of line             |  where n=1..9 eg ```[[2]]Heading Level 2```                    |
