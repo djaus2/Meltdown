@@ -1,4 +1,4 @@
-# Meltdown V1.2
+# Meltdown V2.0
 
 A simple to code and use Markup language making much use of brackets.
 
@@ -34,6 +34,7 @@ line.
 7.  Added BlazTest a Blazor Server App with which you can compose or paste text that then then gets parsed by Meltdown. 
     Shows the rendered Html as well. Some samples on offer like the console Test app as well.
 8.  Meltdown class sperated into 2 files with delimeters in the second file.
+9.  (V2.0) Color just uses ((..|..)) and links use <<..}..>>
 
 ## Context
 

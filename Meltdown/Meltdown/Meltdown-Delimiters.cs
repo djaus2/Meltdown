@@ -22,8 +22,8 @@ namespace Meltdown
         private static string italics_underline = $"{italics[1]}{underline[1]}";
         private static string bold_italics_underline = $"{bold[1]}{italics[1]}{underline[1]}";
 
-        private static string ccolor = "(((";
-        private static string llink = "{{{";
+        private static string ccolor = "((";
+        private static string llink = "<<";
         private static char paramSep = '|';
 
         // Next 3 are used for searches, formed from previous 3
@@ -67,7 +67,7 @@ namespace Meltdown
             char[] charArray = s.ToCharArray();
             Array.Reverse(charArray);
             string ret = new string(charArray);
-            ret = ret.Replace('[', ']').Replace('(', ')').Replace('{', '}');//.Replace('<','>');
+            ret = ret.Replace('[', ']').Replace('(', ')').Replace('{', '}').Replace('<','>');
             return ret;
         }
     }
