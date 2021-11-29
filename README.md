@@ -95,21 +95,21 @@ some other entities; currently for HTML links.[](*%3curl%3e*)
 
 | Format                 | Markup                             | Notes                                                          |
 |------------------------|------------------------------------|----------------------------------------------------------------|
-| Bold                   | [[*\<text\>*]]                     |                                                                |
-| Italics                | ((*\<text\>*))                     |                                                                |
-| UnderLine              | {{*\<text\>*}}                     |                                                                |
-| Bold-Italics           | [(*\<text\>*)]                     | *Order does matter*                                            |
-| Bold-Underline         | [{*\<text\>*}]                     | *Order does matter*                                            |
-| Italics-Underline      | ({*\<text\>*})                     | *Order does matter*                                            |
-| Bold-Italics-Underline | [({*\<text\>*})]                   | *Order does matter*                                            |
-| Font Color             | (((*\<color name\>*\|*\<text\>*))) |                                                                |
-| Links                  | {{{*\<url\>*}}}                    |                                                                |
-| ,,                     | {{{*\<link text\>*\|*\<url\>*}}}   |                                                                |
-| Heading                | [[n]] at start of line             |  where n=1..9 eg ```[[2]]Heading Level 2```                    |
-| Bullet List            | -space or -tab at start of line    | Only one level of list                                         |
-| List Multilevel        | ((n)) at start of line             | where n=1..9   _See example at bottom_                         |
-| Table                  | ((T)) at start of each line        | Table Header row. Headings are Csv list.                       |
-|  ,,                    | ((t)) at start of each line        | Table Data row. Cells are a Csv list                           |
+| Bold                   | ```[[text]]```                     |                                                                |
+| Italics                | ```((text))```                     |                                                                |
+| UnderLine              | ```{{text}}```                     |                                                                |
+| Bold-Italics           | ```[(text)]```                     | *Order does matter*                                            |
+| Bold-Underline         | ```[{text}]```                     | *Order does matter*                                            |
+| Italics-Underline      | ```({text})```                     | *Order does matter*                                            |
+| Bold-Italics-Underline | ```[({text})]```                   | *Order does matter*                                            |
+| Font Color             | (((color name|text)))``` |                                                                |
+| Links                  | ```<<url>>```                    |                                                                |
+| ,,                     | ```<<link text|url>>```  |       
+| Heading                | ```[[n]]``` at start of line             |  where n=1..9 eg ```[[2]]Heading Level 2```                    |
+| Bullet List            | ```-space``` or ```-tab``` at start of line    | Only one level of list                                         |
+| List Multilevel        | ```((n))``` at start of line             | where n=1..9   _See example at bottom_                         |
+| Table                  | ```((T))``` at start of each line        | Table Header row. Headings are Csv list.                       |
+|  ,,                    | ```((t))``` at start of each line        | Table Data row. Cells are a Csv list                           |
 
 ## Test App Output:
 
