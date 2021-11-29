@@ -5,10 +5,10 @@
 <h1>Meltdown Markup Test</h1>
 
 <p>Enter or paste Meltdown Markup in <b><i>Text:</i></b> textbox. Alt. Try the samples below.</p>
-Text:<br /> <textarea  @bind="@meltdownText"   /><br />
+Text:<br /> <textarea  @bind="@meltdownText"  cols="50" /><br />
 <button class="btn btn-primary" @onclick="MarkupText">Parse Markup using Meltdown</button> <br />
 Markup: <br />
-<textarea @bind="@htmlText" /> <br />
+<textarea @bind="@htmlText" cols="50" /> <br />
 <br />
 <h2>Try these:</h2>
 <button class="btn btn-primary" @onclick="Formats">Sample Formnats</button> <br />
