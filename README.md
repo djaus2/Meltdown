@@ -55,6 +55,7 @@ implement markup as a parser that outputs HTML, that makes much use of brackets.
 The generated content is HTML so
 
 -   The source content is in the main, Text.
+-   Neltdown is line based with no state passed between lines
 
 -   HTML can be seamlessly embedded in a page, and so is unmodified by the
     parser.
@@ -73,9 +74,6 @@ The generated content is HTML so
 
 -   Where a parameter is required, or the sequence is in two parts a \| is used
     as a separator.
-
--   Use of \< .. \> in the syntax is avoided as these are the basis of HTML
-    tags.
 
 -   Formatting tags can be combined with inner text of a Meltdown tag conforming
     to another tag. But 3 character bracketing tags are defined explicitly for
