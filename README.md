@@ -129,7 +129,7 @@ AA{{This is Underline}}BB
 
 <p>AA<u>This is Underline</u>BB</p>
 
-AA(((red|This is red)))BB(((blue|This is blue)))CC
+AA((red|This is red))BB((blue|This is blue))CC
 
 <p>AA<font color="Red">This is red</font>BB<font color="Blue">This is blue</font>CC</p>
 
