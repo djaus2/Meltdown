@@ -137,11 +137,11 @@ AA[({This is bold italics and underline})]BB
 
 <p>AA<b><i><u>This is bold italics and underline</u></i></b>BB</p>
 
-AA{{{https://sportronics.com.au}}}BB
+AA<<https://sportronics.com.au>>BB
 
 <p>AA<a href= "https://sportronics.com.au">https://sportronics.com.au</a>BB</p>
 
-AA{{{Click here|https://sportronics.com.au}}}BB
+AA<<Click here|https://sportronics.com.au>>BB
 
 <p>AA<a href= "https://sportronics.com.au">Click here</a>BB</p>
 ```
