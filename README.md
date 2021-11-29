@@ -55,7 +55,7 @@ implement markup as a parser that outputs HTML, that makes much use of brackets.
 The generated content is HTML so
 
 -   The source content is in the main, Text.
--   Neltdown is line based with no state passed between lines
+-   **Meltdown** is line based with no state passed between lines
 
 -   HTML can be seamlessly embedded in a page, and so is unmodified by the
     parser.
