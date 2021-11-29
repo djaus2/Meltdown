@@ -54,7 +54,7 @@ implement markup as a parser that outputs HTML, that makes much use of brackets.
 
 The generated content is HTML so
 
--   The source content is in the main Text.
+-   The source content is in the main, Text.
 
 -   HTML can be seamlessly embedded in a page, and so is unmodified by the
     parser.
