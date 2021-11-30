@@ -36,7 +36,7 @@ line.
 8.  Meltdown class sperated into 2 files with delimeters in the second file.
 9.  (V2.0) Color just uses ((..|..)) and links use <<..}..>>
 10. Two Markdown Syntaxes included: Links and Headings
-
+11. BlazTest has send email Test page.
 ## Context
 
 When implementing **SendMail** functionality with C\# code, for example in a

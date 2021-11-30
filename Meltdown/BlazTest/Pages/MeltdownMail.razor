@@ -1,0 +1,96 @@
+﻿@page "/mailtest"
+
+@using System.Net.Mail;
+
+<h1>Meltdown Mail Test</h1>
+
+@if (model != null)
+{
+    <p>Enter or paste Meltdown Markup in <b><i>Text:</i></b> textbox. Alt. Try the samples below.</p>
+    <EditForm Model="@model">
+
+        <table>
+            <tr><td>From (Name):</td><td><InputText @bind-Value="@model.Name" /></td></tr>
+            <tr><td>From (Email address):</td><td><InputText @bind-Value="@model.From" /></td></tr>
+            <tr><td>From (Password):</td><td><InputText @bind-Value="@model.Pwd" /></td></tr>
+            <tr><td>To (Email address):</td><td><InputText @bind-Value="@model.To" /></td></tr>
+            <tr><td>Mail Service Url</td><td><InputText @bind-Value="@model.Url" /></td></tr>
+            <tr><td colspan="2"><i>Hint:</i> Use smtp.gmail.com for Gmail and smtp.office365.com for Office </td></tr>
+            <tr><td>Port:</td><td><InputText @bind-Value="@model.Port" /></td></tr>
+            <tr><td colspan="2"><i>Hint:</i> Use 587 for Gmail and 587 for Office</td></tr>
+            <tr><td>Email Subject:</td><td><InputText @bind-Value="@model.Subject" /></td></tr>
+        </table>
+        <br />
+        <b>Meltdown Text:</b>
+        <br />
+        <textarea @bind="@model.meltdownText" cols="50" />
+        <br />
+        <button class="btn btn-primary" @onclick="MarkupText">Parse Markup using Meltdown</button>
+        <br />
+        <b>Markup:</b>
+        <br />
+        <textarea @bind="@model.htmlText" cols="50" readonly />
+        <br />
+        <button class="btn btn-primary" @onclick="Send">Send Mail</button>
+        <br />
+        <b>The Rendered HTML:</b>
+        <br />
+        @((MarkupString)@model.htmlText)
+    </EditForm>
+}
+
+
+@code {
+    public Model model = null;
+    public class Model
+    {
+        public string meltdownText = "";
+        public string htmlText = "";
+        public string From = "";
+        public string Name = "";
+        public string Pwd = "";
+        public string To = "";
+        public string Url = "smtp.office365.com";
+        public string Port = "587";
+        public string Subject = "";
+    }
+
+    private void MarkupText()
+    {
+        model.htmlText = Meltdown.Meltdown.Parse(model.meltdownText);
+        StateHasChanged();
+    }
+
+    private void Send()
+    {
+        MailMessage msg = new MailMessage();
+        msg.From = new MailAddress(model.From, model.Name);
+        msg.To.Add(new MailAddress(model.To, model.To));
+
+        msg.Subject = model.Subject;
+        msg.IsBodyHtml = true;
+        msg.Body = $@"<html><body><h1><font color=""red"">{model.Subject}</font></h1>{model.htmlText}</body></html>";
+        msg.BodyEncoding = System.Text.Encoding.UTF8;
+
+        SmtpClient client = new SmtpClient();
+        client.UseDefaultCredentials = false;
+        client.Credentials = new System.Net.NetworkCredential(model.From, model.Pwd);
+        client.Port = int.Parse(model.Port);
+        client.Host = model.Url;
+        client.DeliveryMethod = SmtpDeliveryMethod.Network;
+        client.EnableSsl = true;
+        try
+        {
+            client.Send(msg);
+        } catch (Exception ex)
+        {
+
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        model = new Model();
+    }
+}
