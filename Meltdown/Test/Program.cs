@@ -36,7 +36,7 @@ namespace Test
             Console.WriteLine(res);
 
             Console.WriteLine();
-            msg = "AA(((red|This is red)))BB(((blue|This is blue)))CC";
+            msg = "AA((red|This is red))BB((blue|This is blue))CC";
             Console.Write(msg);
             res = Meltdown.Meltdown.Parse(msg);
             Console.WriteLine(res);
@@ -48,13 +48,13 @@ namespace Test
             Console.WriteLine(res);
 
             Console.WriteLine();
-            msg = "AA{{{https://sportronics.com.au}}}BB";
+            msg = "AA<<https://sportronics.com.au>>BB";
             Console.Write(msg);
             res = Meltdown.Meltdown.Parse(msg);
             Console.WriteLine(res);
 
             Console.WriteLine();
-            msg = "AA{{{Click here|https://sportronics.com.au}}}BB";
+            msg = "AA<<Click here|https://sportronics.com.au>>BB";
             Console.Write(msg);
             res = Meltdown.Meltdown.Parse(msg);
             Console.WriteLine(res);
