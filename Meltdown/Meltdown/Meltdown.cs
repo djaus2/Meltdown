@@ -318,6 +318,35 @@ namespace Meltdown
                     inList = false;
                 }
             }
+            else if (System.IO.Enumeration.FileSystemName.MatchesSimpleExpression("#*", line))
+            {
+                //Check for Markup Heading format
+                int count = 0;
+                bool found = true;
+                do
+                {
+                    if (!(line[count++] == '#'))
+                        found = false;
+                    else if (count == (line.Length - 1))
+                        found = false;
+                }
+                while (found);
+                if ((count > 0) && (count < line.Length))
+                {
+                    if (line[count] == ' ')
+                    {
+                        line = line.Substring(count);
+                        if (inList)
+                        {
+                            line = $"\n<ul>\n<h{count - 1}>{line}</h{count - 1}>";
+                        }
+                        else
+                            line = $"<h{count - 1}>{line}</h{count - 1}>";
+                        isHeading = true;
+                        inList = false;
+                    }
+                }
+            }
             return line;
         }
 

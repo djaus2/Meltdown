@@ -35,6 +35,7 @@ line.
     Shows the rendered Html as well. Some samples on offer like the console Test app as well.
 8.  Meltdown class sperated into 2 files with delimeters in the second file.
 9.  (V2.0) Color just uses ((..|..)) and links use <<..}..>>
+10. Two Markdown Syntaxes included: Links and Headings
 
 ## Context
 

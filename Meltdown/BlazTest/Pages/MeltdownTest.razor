@@ -40,7 +40,7 @@ The Rendered HTML:<br />
         msg +="\n" + "AA[[This is Bold]]BB";
         msg +="\n" +  "AA((This is Italics))BB";
         msg +="\n" +  "AA{{This is Underline}}BB";;
-        msg +="\n" +  "AA(((red|This is red)))BB(((blue|This is blue)))CC";
+        msg +="\n" +  "AA((red|This is red))BB((blue|This is blue))CC";
         meltdownText = msg;
         htmlText = Meltdown.Meltdown.Parse(meltdownText);
         StateHasChanged();
@@ -48,8 +48,8 @@ The Rendered HTML:<br />
 
     private void SomeLinks()
     {
-        string msg = "AA{{{Click here|https://sportronics.com.au}}}BB";
-        msg += "\n" + "AA{{{https://sportronics.com.au}}}BB";
+        string msg = "AA<<Click here|https://sportronics.com.au>>BB";
+        msg += "\n" + "AA<<https://sportronics.com.au>>BB";
         meltdownText = msg;
         htmlText = Meltdown.Meltdown.Parse(meltdownText);
         StateHasChanged();

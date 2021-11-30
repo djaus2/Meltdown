@@ -85,6 +85,16 @@ namespace Test
             res = Meltdown.Meltdown.Parse(msg);
             Console.WriteLine(res);
 
+            Console.WriteLine();
+            Console.WriteLine("Some Markups included");
+            msg = "[Click here](https://davidjones.sportronics.com.au)";
+            msg += "\n# Heading 1";
+            msg += "\n## Heading 2";
+            msg += "\n##Not a heading as need space after last #.";
+            Console.Write(msg);
+            res = Meltdown.Meltdown.Parse(msg);
+            Console.WriteLine(res);
+
 
             Console.ReadLine();
         }
