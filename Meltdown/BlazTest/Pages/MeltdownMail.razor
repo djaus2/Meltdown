@@ -37,10 +37,12 @@
         <br />
         @((MarkupString)@model.htmlText)
     </EditForm>
+@Result
 }
 
 
 @code {
+    public string Result;
     public Model model = null;
     public class Model
     {
@@ -63,29 +65,15 @@
 
     private void Send()
     {
-        MailMessage msg = new MailMessage();
-        msg.From = new MailAddress(model.From, model.Name);
-        msg.To.Add(new MailAddress(model.To, model.To));
-
-        msg.Subject = model.Subject;
-        msg.IsBodyHtml = true;
-        msg.Body = $@"<html><body><h1><font color=""red"">{model.Subject}</font></h1>{model.htmlText}</body></html>";
-        msg.BodyEncoding = System.Text.Encoding.UTF8;
-
-        SmtpClient client = new SmtpClient();
-        client.UseDefaultCredentials = false;
-        client.Credentials = new System.Net.NetworkCredential(model.From, model.Pwd);
-        client.Port = int.Parse(model.Port);
-        client.Host = model.Url;
-        client.DeliveryMethod = SmtpDeliveryMethod.Network;
-        client.EnableSsl = true;
-        try
-        {
-            client.Send(msg);
-        } catch (Exception ex)
-        {
-
-        }
+        Result = "Sending Email";
+        StateHasChanged();
+        Result = Meltdown.Meltdown.SendMail(
+            new MailAddress(model.From, model.Name), model.Pwd,
+            new MailAddress(model.To, model.To),
+            model.Subject, model.htmlText,
+            model.Url, int.Parse(model.Port));
+            //,null, null, null);
+        StateHasChanged();
     }
 
     protected override async Task OnInitializedAsync()
