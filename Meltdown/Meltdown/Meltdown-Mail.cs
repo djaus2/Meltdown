@@ -5,7 +5,7 @@ using System.Net.Mail;
 namespace Meltdown
 {
     /// <summary>
-    /// This is a partial implementation of the the second schema, with some other extras.
+    /// This is a partial implementation of Meltdown: The Send Email functionality
     /// </summary>
     public static partial class Meltdown
     {

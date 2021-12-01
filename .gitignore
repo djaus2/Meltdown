@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Meltdown/Meltdown/nuget.exe
+/Meltdown/Meltdown/Meltdown.nuspec
+/Meltdown/Meltdown/nuget.exe.readme.txt

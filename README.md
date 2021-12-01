@@ -6,9 +6,10 @@ The key point is to bracket the text that is to be formatted. Also, some line
 based content is simple to annotate with some characters at the start of the
 line.
 
-**This work is now COMPLETE subject to bug fixes and improvements.**
+**Now available on Nuget: ** https://www.nuget.org/packages/Meltdown/2.0.0  
+```Install-Package Meltdown -Version 2.0.0```
 
-[See blog posts on this](https://davidjones.sportronics.com.au/search.html?query=Meltdown)
+[Also, see blog posts on Meltdown](https://davidjones.sportronics.com.au/search.html?query=Meltdown)
 
 ## Updates
 

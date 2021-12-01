@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Meltdown
 {
     /// <summary>
-    /// This is a partial implementation of the the second schema, with some other extras.
+    /// This is a partial implementation of Meltdown class implementing the the V2.0 of the schema.
     /// </summary>
     public static partial class Meltdown
     {
