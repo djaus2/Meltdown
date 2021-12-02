@@ -7,7 +7,7 @@ based content is simple to annotate with some characters at the start of the
 line.
 
 <b> Now available on Nuget: </b> https://www.nuget.org/packages/Meltdown/2.0.0  
-```Install-Package Meltdown -Version 2.0.0```
+```Install-Package Meltdown -Version 2.0.1```
 
 [Also, see blog posts on Meltdown](https://davidjones.sportronics.com.au/search.html?query=Meltdown)
 
