@@ -59,6 +59,7 @@
 
     private void MarkupText()
     {
+        Result = "";
         model.htmlText = Meltdown.Meltdown.Parse(model.meltdownText);
         StateHasChanged();
     }
@@ -72,7 +73,7 @@
             new MailAddress(model.To, model.To),
             model.Subject, model.htmlText,
             model.Url, int.Parse(model.Port));
-            //,null, null, null);
+        //,null, null, null);
         StateHasChanged();
     }
 
