@@ -1,4 +1,4 @@
-# Meltdown V2.0
+# Meltdown V2.0.1
 
 A simple to code and use Markup language making much use of brackets.
 
@@ -6,7 +6,7 @@ The key point is to bracket the text that is to be formatted. Also, some line
 based content is simple to annotate with some characters at the start of the
 line.
 
-<b> Now available on Nuget: </b> https://www.nuget.org/packages/Meltdown/2.0.0  
+<b> Now available on Nuget: </b> https://www.nuget.org/packages/Meltdown/2.0.1  
 ```Install-Package Meltdown -Version 2.0.1```
 
 [Also, see blog posts on Meltdown](https://davidjones.sportronics.com.au/search.html?query=Meltdown)
