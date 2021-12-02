@@ -23,7 +23,7 @@ line.
     `[[2]]At start of line` becomes  
     `<h2>At start of Line</h2>`
 
-4.  `This page has been refined such that only one schema is presented, as  
+4.  This page has been refined such that only one schema is presented, as  
     adopted and only one class in the code that implements this.`
     
 5.  Simple lists -<space> and -<tab> at start now work. One level only.  
@@ -37,7 +37,8 @@ line.
 8.  Meltdown class sperated into 2 files with delimeters in the second file.
 9.  (V2.0) Color just uses ((..|..)) and links use <<..}..>>
 10. Two Markdown Syntaxes included: Links and Headings
-11. BlazTest has send email Test page.
+11.  Meltdown has 2 send email methods.BlazTest has send email Test page.
+12.  Meltdown available on Nuget
 ## Context
 
 When implementing **SendMail** functionality with C\# code, for example in a
