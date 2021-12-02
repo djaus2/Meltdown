@@ -34,7 +34,7 @@ line.
 
 7.  Added BlazTest a Blazor Server App with which you can compose or paste text that then then gets parsed by Meltdown. 
     Shows the rendered Html as well. Some samples on offer like the console Test app as well.
-8.  Meltdown class sperated into 2 files with delimeters in the second file.
+8.  Meltdown class separated into 2 files with delimeters in the second file.
 9.  (V2.0) Color just uses ((..|..)) and links use <<..}..>>
 10. Two Markdown Syntaxes included: Links and Headings
 11.  Meltdown has 2 send email methods.BlazTest has send email Test page.
