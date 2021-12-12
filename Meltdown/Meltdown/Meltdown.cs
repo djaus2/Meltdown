@@ -99,9 +99,6 @@ namespace Meltdown
                 // All links on the line. Can't extend over one line
                 line = GetMeltdownLinks(line);
 
-                // All liknks on the line. Can't extend over one line
-                line = GetMarkdownLinks(line);
-
                 // Format begin-end on same line
                 line = MapMeltdownFormat2Html(line);
 
