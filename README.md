@@ -1,4 +1,4 @@
-# Meltdown V2.1
+# Meltdown V2.1.0
 
 A simple to code and use Markup language making much use of brackets.
 
@@ -6,8 +6,8 @@ The key point is to bracket the text that is to be formatted. Also, some line
 based content is simple to annotate with some characters at the start of the
 line.
 
-<b> Now available on Nuget: </b> https://www.nuget.org/packages/Meltdown/2.0.0  
-```Install-Package Meltdown -Version 2.0.0```
+<b> Now available on Nuget: </b> https://www.nuget.org/packages/Meltdown/2.0.1  
+```Install-Package Meltdown -Version 2.0.1```
 
 [Also, see blog posts on Meltdown](https://davidjones.sportronics.com.au/search.html?query=Meltdown)
 
@@ -23,7 +23,7 @@ line.
     `[[2]]At start of line` becomes  
     `<h2>At start of Line</h2>`
 
-4.  `This page has been refined such that only one schema is presented, as  
+4.  This page has been refined such that only one schema is presented, as  
     adopted and only one class in the code that implements this.`
     
 5.  Simple lists -<space> and -<tab> at start now work. One level only.  
@@ -34,13 +34,10 @@ line.
 
 7.  Added BlazTest a Blazor Server App with which you can compose or paste text that then then gets parsed by Meltdown. 
     Shows the rendered Html as well. Some samples on offer like the console Test app as well.
-8.  Meltdown class sperated into 2 files with delimeters in the second file.
+8.  Meltdown class separated into 2 files with delimeters in the second file.
 9.  (V2.0) Color just uses ((..|..)) and links use <<..}..>>
 10. Two Markdown Syntaxes included: Links and Headings
 11. BlazTest has send email Test page.
-12. Functionally the same as previous except added:  
-     ```!! translates to <br/>```  
-      and significant rework of coding structure.
 ## Context
 
 When implementing **SendMail** functionality with C\# code, for example in a
