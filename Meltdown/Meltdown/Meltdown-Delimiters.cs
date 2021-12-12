@@ -26,6 +26,8 @@ namespace Meltdown
         private static string llink = "<<";
         private static char paramSep = '|';
 
+        private static string linebreak = "!!";
+
         // Next 3 are used for searches, formed from previous 3
         // Searches use System.IO.Enumeration.FileSystemName.MatchesSimpleExpression()
         private static string ColorPattern = $"*{ccolor}*{paramSep}*{Reverse(ccolor)}*";

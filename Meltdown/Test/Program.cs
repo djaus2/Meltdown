@@ -59,7 +59,19 @@ namespace Test
             res = Meltdown.Meltdown.Parse(msg);
             Console.WriteLine(res);
 
-            
+            Console.WriteLine();
+            msg = "This is a paragraph.";
+            Console.Write(msg);
+            res = Meltdown.Meltdown.Parse(msg);
+            Console.WriteLine(res);
+
+            Console.WriteLine();
+            msg = "This is a paragraph!!with extended!!lines.";
+            Console.Write(msg);
+            res = Meltdown.Meltdown.Parse(msg);
+            Console.WriteLine(res);
+
+
             Console.WriteLine();
             msg = "- Simple list line one\n-\tSimple list line 2 with tab";
             msg += "\n- Simple list line three\n-\tSimple list line 4 with tab";
@@ -67,24 +79,28 @@ namespace Test
             res = Meltdown.Meltdown.Parse(msg);
             Console.WriteLine(res);
 
-
+            
             Console.WriteLine();
             msg = "((1)) Extended list level one\n((1)) Extended list level 1";
             msg += "\n((3)) Extended list level two\n((3)) Extended list level three";
             msg += "\n((2)) Extended list level two\n((1)) Extended list level one";
             Console.Write(msg);
-             res = Meltdown.Meltdown.Parse(msg);
+            Console.WriteLine();
+            res = Meltdown.Meltdown.Parse(msg);
             Console.WriteLine(res);
-
+            
+            
             Console.WriteLine();
             msg = "((T))Name,Age,Country";
             msg += "\n((t))Fred,23,Australia";
             msg += "\n((t))Sue,45,USA";
             msg += "\n((t))John,21,NZ";
             Console.Write(msg);
+            Console.WriteLine();
             res = Meltdown.Meltdown.Parse(msg);
             Console.WriteLine(res);
-
+            
+            
             Console.WriteLine();
             Console.WriteLine("Some Markups included");
             msg = "[Click here](https://davidjones.sportronics.com.au)";
@@ -92,9 +108,10 @@ namespace Test
             msg += "\n## Heading 2";
             msg += "\n##Not a heading as need space after last #.";
             Console.Write(msg);
+            Console.WriteLine();
             res = Meltdown.Meltdown.Parse(msg);
             Console.WriteLine(res);
-
+            
 
             Console.ReadLine();
         }

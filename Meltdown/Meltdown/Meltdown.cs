@@ -41,45 +41,55 @@ namespace Meltdown
             string html = "";
             string[] lines = txt.Split(new[] { '\r', '\n' }, StringSplitOptions.None);
 
-            bool inList = false;
-            int ExntendedListLevel = 0;
-            bool inTable = false;
+            int ExtendedListLevel = 0;
+            StartsWith swPrevious = StartsWith.nothing;
             foreach (var _line in lines)
             {
-                bool isHeading = false;
                 string line = _line; // line get modified hence need copy of the ierator
-                if (string.IsNullOrEmpty(line))
+                string prepend = "";
+                int level = 0;
+
+                // Get line type and finish previous state if required
+                StartsWith sw = CheckStartsWith(line,ref level);
+                if (sw != swPrevious)
                 {
-                    if (inList)
-                    {
-                        html += "\n</ul>\n";
-                    }
-                    else
-                        html += "\n";
-                    continue;
+                    // Finish table or lists if incomplete.
+                    prepend = FinishState(swPrevious, ExtendedListLevel);
                 }
 
-                line = Check4HeadinsatStartof(line, ref isHeading, ref inList);
-
-
-                // List can be created two ways:
-                // (i) Start line with -<space> or -<tab>
-                // This only can create first level list
-                // (ii) Start line with ((n)) where n is the list level 0..9
-                // Can creat multilevel lists.
-                // Nb: List modes are mutually exclusive.
-                if (!isHeading)
+                // Process the line
+                switch (sw)
                 {
-                    if ((!inList) && (ExntendedListLevel == 0))
-                        line = Check4TableatStartof(line, ref html, ref inTable);
-                    if (!inTable)
-                    {
-                        if (!inList)
-                            line = Check4ListatStartof(line, ref ExntendedListLevel);
-                        if (ExntendedListLevel == 0)
-                            line = DoBullet(line, ref inList);
-                    }
+                    case StartsWith.blank:
+                        line = "<br />";
+                        break;
+                    case StartsWith.nothing:
+                        line =  "<p>" + line + "</p>";
+                        break;
+                    case StartsWith.heading:
+                        char ch = line[2];
+                        line = $"<h{ch}>{line.Substring(5)}</h{ch}>";
+                        break;
+                    case StartsWith.markdownheading:
+                        line = line.Substring(level);
+                        line = $"<h{level}>{line}</h{level}>";
+                        break;
+                    case StartsWith.table:
+                        if (!(swPrevious == StartsWith.table))
+                            prepend += "\n<table>\n";
+                        line = DoTable(line);
+                        break;
+                    case StartsWith.simpleList:
+                        line = line.Substring(2);
+                        if (!(swPrevious == StartsWith.simpleList))
+                            prepend += "\n<ul>\n";
+                        line = "<li>" + line + "</li>";
+                        break;
+                    case StartsWith.xlist:
+                        line = DoExtendedList(line, level, ref ExtendedListLevel);
+                        break;
                 }
+                swPrevious = sw;
 
                 // Font color begin-end on same line
                 line = GetMeltdownFontColors(line);
@@ -92,51 +102,43 @@ namespace Meltdown
                 // All liknks on the line. Can't extend over one line
                 line = GetMarkdownLinks(line);
 
-
-
                 // Format begin-end on same line
                 line = MapMeltdownFormat2Html(line);
 
-                html += "\n" + line;
+                html += "\n" + prepend + line;
             }
-            if (inList)
-                html += "\n</ul>\n";
-            else if (ExntendedListLevel > 0)
-            {
-                string post = "";
-                for (int i = ExntendedListLevel; i != 0; i--)
-                    post += "</ul>\n";
-                html += post;
-                ExntendedListLevel = 0;
-            }
-            else if (inTable)
-                html += "\n</table\n";
+            // Finish table or lists if incomplete.
+            html += FinishState(swPrevious, ExtendedListLevel);
+
             return html;
         }
 
-        private static string DoBullet(string line, ref bool inList)
+        private static string FinishState(StartsWith sw, int ExtendedListLevel)
         {
-            if ((line.Length > 2)
-                    &&
-            ((line.Substring(0, 2) == "- ") || (line.Substring(0, 2) == "-\t")))
+            string ret = "";
+            switch (sw)
             {
-                line = line.Substring(2);
-                if (!inList)
-                    line = "\n<ul>\n<li>" + line + "</li>";
-                else
-                    line = "<li>" + line + "</li>";
-                inList = true;
+                case StartsWith.blank:
+                case StartsWith.nothing:
+                case StartsWith.heading:
+                    break;
+                case StartsWith.table:
+                    ret = "\n</table>\n";
+                    break;
+                case StartsWith.simpleList:
+                    ret = "\n</ul>\n";
+                    break;
+                case StartsWith.xlist:
+                    if (ExtendedListLevel > 0)
+                    {
+                        for (int i = ExtendedListLevel; i != 0; i--)
+                            ret += "</ul>\n";
+                        ExtendedListLevel = 0;
+                        ret = "\n" + ret;
+                    }
+                    break;
             }
-            else
-            {
-                if (inList)
-                    line = "</ul>\n" + line + "";
-                else
-                    line = "\n<p>" + line + "</p>";
-                inList = false;
-            }
-
-            return line;
+            return ret;
         }
 
         private static string MapMeltdownFormat2Html(string line)
@@ -159,10 +161,9 @@ namespace Meltdown
             line = line.Replace(Reverse(italics), "</i>");
             line = line.Replace(underline, "<u>");
             line = line.Replace(Reverse(underline), "</u>");
+            line = line.Replace(linebreak, "<br/>\n");
 
-
-
-            //line = line.Replace(strikethru,,,,)
+            //line = line.Replace(strikethru,"Need this <p style="text-decoration: line-through;">")
             //line = line.Replace(Reverse(strikethru), ...);
             return line;
         }
@@ -301,117 +302,37 @@ namespace Meltdown
             return line;
         }
 
-        private static string Check4HeadinsatStartof(string line, ref bool isHeading, ref bool inList)
-        {
-            if (System.IO.Enumeration.FileSystemName.MatchesSimpleExpression(HeadingPatternatStartofLine, line))
-            {
-                char ch = line[2];
-                if (char.IsDigit(ch))
-                {
-                    if (inList)
-                    {
-                        line = $"\n<ul>\n<h{ch}>{line.Substring(5)}</h{ch}>";
-                    }
-                    else
-                        line = $"<h{ch}>{line.Substring(5)}</h{ch}>";
-                    isHeading = true;
-                    inList = false;
-                }
-            }
-            else if (System.IO.Enumeration.FileSystemName.MatchesSimpleExpression("#*", line))
-            {
-                //Check for Markup Heading format
-                int count = 0;
-                bool found = true;
-                do
-                {
-                    if (!(line[count++] == '#'))
-                        found = false;
-                    else if (count == (line.Length - 1))
-                        found = false;
-                }
-                while (found);
-                if ((count > 0) && (count < line.Length))
-                {
-                    if (line[count] == ' ')
-                    {
-                        line = line.Substring(count);
-                        if (inList)
-                        {
-                            line = $"\n<ul>\n<h{count - 1}>{line}</h{count - 1}>";
-                        }
-                        else
-                            line = $"<h{count - 1}>{line}</h{count - 1}>";
-                        isHeading = true;
-                        inList = false;
-                    }
-                }
-            }
-            return line;
-        }
-
 
         /// <summary>
         /// Check for Extended list line start ((n)) where n is the list level 0..9.
         /// </summary>
         /// <param name="line">The line being checked</param>
+        /// <param name="level">Previously determined list level</param>
         /// <param name="extendedListLevel">Current list depth. 0= not in list</param>
         /// <returns>The processed line</returns>
-        private static string Check4ListatStartof(string line, ref int extendedListLevel)
+        private static string DoExtendedList(string line, int level, ref int extendedListLevel)
         {
-            if (System.IO.Enumeration.FileSystemName.MatchesSimpleExpression(ListPatternatStartofLine, line))
+            if (level == extendedListLevel)
+                line = $"</li>\n<li>{line.Substring(5)}";
+            else
             {
-                char ch = line[2];
-                if (char.IsDigit(ch))
+                int diff = level - extendedListLevel;
+                if (diff > 0)
                 {
-                    int level = ((int)ch) - 48;
-                    if (level == extendedListLevel)
-                        line = $"</li>\n<li>{line.Substring(5)}";
-                    else
-                    {
-                        int diff = level - extendedListLevel;
-                        if (diff > 0)
-                        {
-                            string pre = "";
-                            for (int i = 0; i < diff; i++)
-                                pre += "<ul>\n";
-                            line = $"{pre}<li>{line.Substring(5)}";
-                        }
-                        else
-                        {
-                            string pre = "";
-                            for (int i = 0; i < -diff; i++)
-                                pre += "</ul></li>\n";
-                            line = $"{pre}<li>{line.Substring(5)}</li>";
-                        }
-                    }
-                    extendedListLevel = level;
+                    string pre = "";
+                    for (int i = 0; i < diff; i++)
+                        pre += "<ul>\n";
+                    line = $"{pre}<li>{line.Substring(5)}";
                 }
                 else
                 {
-                    // If the line is'nt a list line then end the list if in extended list
-                    if (extendedListLevel != 0)
-                    {
-                        string pre = "";
-                        for (int i = 0; i < extendedListLevel; i++)
-                            pre += "</ul>\n</li>\n";
-                        line = pre + line;
-                        extendedListLevel = 0;
-                    }
-                }
-            }
-            else
-            {
-                // If the line is'nt a list line then end the list if in extended list
-                if (extendedListLevel != 0)
-                {
                     string pre = "";
-                    for (int i = extendedListLevel; i != 0; i--)
-                        pre += "</ul>\n";
-                    line = pre + line;
-                    extendedListLevel = 0;
+                    for (int i = 0; i < -diff; i++)
+                        pre += "</ul></li>\n";
+                    line = $"{pre}<li>{line.Substring(5)}</li>";
                 }
             }
+            extendedListLevel = level;
             return line;
         }
 
@@ -419,39 +340,92 @@ namespace Meltdown
         /// Table is a Csv list for each line. First is TH
         /// </summary>
         /// <param name="line"></param>
-        /// <param name="html"></param>
-        /// <param name="inTable"></param>
-        /// <returns></returns>
-        private static string Check4TableatStartof(string line, ref string html, ref bool inTable)
+        /// <returns>line with table header or row</returns>
+        private static string DoTable(string line)
         {
-            if (System.IO.Enumeration.FileSystemName.MatchesSimpleExpression("((T))*", line))
+            char ch = line[2];
+            if (ch == 'T')
             {
-                char ch = line[2];
-                if (ch == 'T')
-                {
-                    if (!inTable)
-                    {
-                        inTable = true;
-                        html += "\n<table>";
-                    }
-                    line = "<tr><th>" + line.Substring(ListPatternatStartofLine.Length-1).Replace(",", "</th><th>") + "</th></tr>";
-                }
-                else if (ch == 't')
-                {
-                    if (!inTable)
-                    {
-                        inTable = true;
-                        html += "\n<table>";
-                    }
-                    line = "<tr><td>" + line.Substring(ListPatternatStartofLine.Length - 1).Replace(",", "</td><td>") + "</td></tr>";
-                }
+                line = line.Substring(5);
+                line = "<tr><th>" + line.Substring(ListPatternatStartofLine.Length-1).Replace(",", "</th><th>") + "</th></tr>";
             }
-            else if (inTable == true)
+            else if (ch == 't')
             {
-                html += "\n</table>\n";
-                inTable = false;
+                line = line.Substring(5);
+                line = "<tr><td>" + line.Substring(ListPatternatStartofLine.Length - 1).Replace(",", "</td><td>") + "</td></tr>";
             }
             return line;
         }
+
+        enum StartsWith { blank,nothing,heading,markdownheading,table,simpleList,xlist}
+
+        /// <summary>
+        /// Gets line type based upon characters at start.
+        /// </summary>
+        /// <param name="line">line to be checked</param>
+        /// <param name="level">Out Determined heading or extended list level</param>
+        /// <returns></returns>
+        private static StartsWith CheckStartsWith(string line ,  ref int  level)
+        {
+            level = 0;
+            StartsWith res = StartsWith.nothing;
+            if (string.IsNullOrEmpty(line))
+                res = StartsWith.blank;
+            else if (System.IO.Enumeration.FileSystemName.MatchesSimpleExpression("((T))*", line))
+                res = StartsWith.table;
+            else if (System.IO.Enumeration.FileSystemName.MatchesSimpleExpression("((t))*", line))
+                res = StartsWith.table;
+            else if (System.IO.Enumeration.FileSystemName.MatchesSimpleExpression(ListPatternatStartofLine, line))
+            {
+                char ch = line[2];
+                if (char.IsDigit(ch))
+                {
+                    level = ((int)ch) - 48;
+                    res = StartsWith.xlist;
+                };
+            }
+            else if (System.IO.Enumeration.FileSystemName.MatchesSimpleExpression(HeadingPatternatStartofLine, line))
+            {
+                char ch = line[2];
+                if (char.IsDigit(ch))
+                {
+                    level = ((int)ch) - 48;
+                    res = StartsWith.heading;
+                };
+            }
+            else if (System.IO.Enumeration.FileSystemName.MatchesSimpleExpression("#*", line))
+            {
+                level = 0;
+                bool found = true;
+                do
+                {
+                    if (!(line[level] == '#'))
+                        found = false;
+                    else if (level == (line.Length - 1))
+                        found = false;
+                    else
+                        level++;
+                }
+                while (found);
+                if ((level > 0) && (level < line.Length))
+                {
+                    if (line[level] == ' ')
+                    {
+                        res = StartsWith.markdownheading;
+                    }
+                }
+            }
+            else
+            {
+                if ((line.Length > 2)
+                            &&
+                    ((line.Substring(0, 2) == "- ") || (line.Substring(0, 2) == "-\t")))
+                {
+                    res = StartsWith.simpleList;
+                }
+            }
+           return res;
+        }
+
     }
 }

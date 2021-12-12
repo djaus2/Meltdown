@@ -1,4 +1,4 @@
-# Meltdown V2.0
+# Meltdown V2.1
 
 A simple to code and use Markup language making much use of brackets.
 
@@ -38,6 +38,9 @@ line.
 9.  (V2.0) Color just uses ((..|..)) and links use <<..}..>>
 10. Two Markdown Syntaxes included: Links and Headings
 11. BlazTest has send email Test page.
+12. Functionally the same as previous except added:  
+     ```!! translates to <br/>```  
+      and significant rework of coding structure.
 ## Context
 
 When implementing **SendMail** functionality with C\# code, for example in a
