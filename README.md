@@ -113,7 +113,8 @@ some other entities; currently for HTML links.[](*%3curl%3e*)
 | List Multilevel        | ```((n))``` at start of line             | where n=1..9   _See example at bottom_                         |
 | Table                  | ```((T))``` at start of each line        | Table Header row. Headings are Csv list.                       |
 |  ,,                    | ```((t))``` at start of each line        | Table Data row. Cells are a Csv list                           |
-
+|  New line  | ```!!``` | Anywhere in text translates to <br/> |
+ 
 ## Test App Output:
 
 ```
