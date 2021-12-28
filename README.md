@@ -102,10 +102,10 @@ some other entities; currently for HTML links.[](*%3curl%3e*)
 | Bold                   | ```[[text]]```                     |                                                                |
 | Italics                | ```((text))```                     |                                                                |
 | UnderLine              | ```{{text}}```                     |                                                                |
-| Bold-Italics           | ```[(text)]```                     | *Order doesn't matter but closing delimiter should mirrow openning one.* |
-| Bold-Underline         | ```[{text}]```                     | *Order doesn't matter but closing delimiter should mirrow openning one.* |
-| Italics-Underline      | ```({text})```                     | *Order doesn't matter but closing delimiter should mirrow openning one.* |
-| Bold-Italics-Underline | ```[({text})]```                   | *Order doesn't matter but closing delimiter should mirrow openning one.* |
+| Bold-Italics           | ```[(text)]```                     | *Order doesn't matter but closing delimiter should mirror openning one.* |
+| Bold-Underline         | ```[{text}]```                     | *Order doesn't matter but closing delimiter should mirror openning one.* |
+| Italics-Underline      | ```({text})```                     | *Order doesn't matter but closing delimiter should mirror openning one.* |
+| Bold-Italics-Underline | ```[({text})]```                   | *Order doesn't matter but closing delimiter should mirror openning one.* |
 | Font Color             | ```((color name\|text))``` |                                                                |
 | Links                  | ```<<url>>```                    |                                                                |
 | ,,                     | ```<<link text\|url>>```  |       
