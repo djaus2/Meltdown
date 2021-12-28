@@ -1,4 +1,4 @@
-# Meltdown V2.1.1
+# Meltdown V2.2.0
 
 A simple to code and use Markup language making much use of brackets.
 
@@ -41,6 +41,7 @@ line.
 12. Functionally the same as previous except added:
      ```!! translates to <br/>```
       and significant rework of coding structure.
+13.  Bold-Italics etc combinations: The order of [,( and { don't matter for openning delimeter but closing should mirror it.
 ## Context
 
 When implementing **SendMail** functionality with C\# code, for example in a
@@ -101,10 +102,10 @@ some other entities; currently for HTML links.[](*%3curl%3e*)
 | Bold                   | ```[[text]]```                     |                                                                |
 | Italics                | ```((text))```                     |                                                                |
 | UnderLine              | ```{{text}}```                     |                                                                |
-| Bold-Italics           | ```[(text)]```                     | *Order does matter*                                            |
-| Bold-Underline         | ```[{text}]```                     | *Order does matter*                                            |
-| Italics-Underline      | ```({text})```                     | *Order does matter*                                            |
-| Bold-Italics-Underline | ```[({text})]```                   | *Order does matter*                                            |
+| Bold-Italics           | ```[(text)]```                     | *Order doesn't matter but closing delimeter should mirrow openning one.* |
+| Bold-Underline         | ```[{text}]```                     | *Order doesn't matter but closing delimeter should mirrow openning one.* |
+| Italics-Underline      | ```({text})```                     | *Order doesn't matter but closing delimeter should mirrow openning one.* |
+| Bold-Italics-Underline | ```[({text})]```                   | *Order doesn't matter but closing delimeter should mirrow openning one.* |
 | Font Color             | ```((color name\|text))``` |                                                                |
 | Links                  | ```<<url>>```                    |                                                                |
 | ,,                     | ```<<link text\|url>>```  |       
