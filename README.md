@@ -41,7 +41,7 @@ line.
 12. Functionally the same as previous except added:
      ```!! translates to <br/>```
       and significant rework of coding structure.
-13.  Bold-Italics etc combinations: The order of [,( and { don't matter for openning delimeter but closing should mirror it.
+13.  Bold-Italics etc combinations: The order of [,( and { don't matter for openning delimiter but closing should mirror it.
 ## Context
 
 When implementing **SendMail** functionality with C\# code, for example in a
@@ -102,10 +102,10 @@ some other entities; currently for HTML links.[](*%3curl%3e*)
 | Bold                   | ```[[text]]```                     |                                                                |
 | Italics                | ```((text))```                     |                                                                |
 | UnderLine              | ```{{text}}```                     |                                                                |
-| Bold-Italics           | ```[(text)]```                     | *Order doesn't matter but closing delimeter should mirrow openning one.* |
-| Bold-Underline         | ```[{text}]```                     | *Order doesn't matter but closing delimeter should mirrow openning one.* |
-| Italics-Underline      | ```({text})```                     | *Order doesn't matter but closing delimeter should mirrow openning one.* |
-| Bold-Italics-Underline | ```[({text})]```                   | *Order doesn't matter but closing delimeter should mirrow openning one.* |
+| Bold-Italics           | ```[(text)]```                     | *Order doesn't matter but closing delimiter should mirrow openning one.* |
+| Bold-Underline         | ```[{text}]```                     | *Order doesn't matter but closing delimiter should mirrow openning one.* |
+| Italics-Underline      | ```({text})```                     | *Order doesn't matter but closing delimiter should mirrow openning one.* |
+| Bold-Italics-Underline | ```[({text})]```                   | *Order doesn't matter but closing delimiter should mirrow openning one.* |
 | Font Color             | ```((color name\|text))``` |                                                                |
 | Links                  | ```<<url>>```                    |                                                                |
 | ,,                     | ```<<link text\|url>>```  |       
