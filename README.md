@@ -106,7 +106,7 @@ some other entities; currently for HTML links.[](*%3curl%3e*)
 | Bold-Underline         | ```[{text}]```                     | *Order doesn't matter but closing delimiter should mirror openning one.* |
 | Italics-Underline      | ```({text})```                     | *Order doesn't matter but closing delimiter should mirror openning one.* |
 | Bold-Italics-Underline | ```[({text})]```                   | *Order doesn't matter but closing delimiter should mirror openning one.* |
-| Font Color             | ```((color name\|text))``` |   Nb: Only a subset of HTML colors accepted. See [code](https://github.com/djaus2/Meltdown/blob/master/Meltdown/Meltdown/Meltdown.cs]                          |
+| Font Color             | ```((color name\|text))``` |   Nb: Only a subset of HTML colors accepted. See [code][https://github.com/djaus2/Meltdown/blob/master/Meltdown/Meltdown/Meltdown.cs]                          |
 | Links                  | ```<<url>>```                    |                                                                |
 | ,,                     | ```<<link text\|url>>```  |       
 | Heading                | ```[[n]]``` at start of line             |  where n=1..9 eg ```[[2]]Heading Level 2```                    |
